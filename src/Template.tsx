@@ -1,5 +1,6 @@
 //import statements
 
+// declare the component with a capitalised name
 function Template() {
   return (
     <div>
