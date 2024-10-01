@@ -1,12 +1,16 @@
-import FormName from '../forms/NameForm';
+import NameForm from '../forms/NameForm';
 import LandingText from '../text/LandingText';
 
-function Landing() {
+interface LandingProps {
+	onNext: () => void;
+}
+
+function Landing({ onNext }: LandingProps) {
   return (
     // render background image that fills the whole component
 		<>
 			<LandingText />
-			<FormName />
+			<NameForm onSubmit={onNext} />
 		</>
   )
 }

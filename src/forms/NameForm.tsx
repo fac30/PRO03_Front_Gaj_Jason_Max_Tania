@@ -1,9 +1,19 @@
+import React from 'react';
 import Button from '../buttons/Button';
 import NameInput from '../inputs/NameInput';
 
-function NameForm() {
+interface NameFormProps {
+	onSubmit: () => void;
+}
+
+function NameForm({ onSubmit }: NameFormProps) {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		onSubmit();
+	};
+	
 	return (
-		<form>
+		<form onSubmit={handleSubmit}>
 			<NameInput />
 			<Button
 				onClick={() => {
