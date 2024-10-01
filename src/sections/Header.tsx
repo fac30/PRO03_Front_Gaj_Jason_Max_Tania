@@ -4,6 +4,7 @@ import React from "react";
 // declare the component with a capitalised name
 const Header: React.FC = () => {
   return (
+		<>
 		<header>
 			<img 
 				src="../assets/logo_backgrounf.png"
@@ -15,9 +16,11 @@ const Header: React.FC = () => {
 				<h1>MoodTime</h1>
 			</span>
 			<nav>
-				{/* Hamburge Menu Here? */}
+				{/* Hamburger Menu Here? */}
 			</nav>
-		</header>
+			</header>
+			<hr/>
+		</>
   )
 }
 
