@@ -1,13 +1,15 @@
- 
 import './App.css'
+import Header from './sections/Header'
+import Content from './sections/Content'
+import Footer from './sections/Footer'
 
 function App() {
   return (
-    <div className="text-center">
-      <h1 className="text-3xl font-bold underline">
-        Hello, Tailwind CSS!
-      </h1>
-    </div>
+		<>
+			<Header />
+			<Content />
+			<Footer />
+		</>
   );
 }
 
