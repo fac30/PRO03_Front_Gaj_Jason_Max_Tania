@@ -1,13 +1,22 @@
-//import statements
+import React from "react";
+
 
 // declare the component with a capitalised name
-function Header() {
+const Header: React.FC = () => {
   return (
-    <header>
-				<h1>
-					MoodTime
-				</h1>
-				<hr/>
+		<header>
+			<img 
+				src="../assets/logo_backgrounf.png"
+				width="60"
+				height="60"
+				alt="logo of the app"
+			/>
+			<span>
+				<h1>MoodTime</h1>
+			</span>
+			<nav>
+				{/* Hamburge Menu Here? */}
+			</nav>
 		</header>
   )
 }
