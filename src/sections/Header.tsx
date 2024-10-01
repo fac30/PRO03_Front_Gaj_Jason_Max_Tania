@@ -7,15 +7,12 @@ const Header: React.FC = () => {
     <nav>
 		<div>
 		    <img 
-			    src="./assets/logo-background.png"
+			    src="../assets/logo_backgrounf.png"
 				width="60"
 				height="60"
 				alt="logo of the app"
 			/>
 		    <span>SpotifyMoodList</span>
-		    <h1>
-			    MoodTime
-		    </h1>
 		</div>		
 	</nav>
   )
