@@ -12,7 +12,7 @@ function App() {
 			<Content />
 			<Button onClick={function (): void {
 			  throw new Error('Function not implemented.')
-		  } } label={'Click me'} />
+		    } } label={'Click me'} />
 			<Footer />
 		</>
   );

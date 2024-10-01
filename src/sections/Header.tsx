@@ -8,12 +8,12 @@ const Header: React.FC = () => {
 
 
     return (
-      <nav className="bg-gray-800 text-white p-4">
+      <nav className="bg-[#929cf8] text-black p-4">
         <div className="container mx-auto flex justify-between items-center">
 		    {/* Left side: Logo and Brand Name */}
 			<div className="flex items-center space-x-3">
                 <img
-                    src="./assets/logo_background.png" // Replace this with the actual path to your logo
+                    src="../assets/logo_background.png" // Replace this with the actual path to your logo
                     alt="Brand Logo"
                     className="h-8 w-8"
                 />
