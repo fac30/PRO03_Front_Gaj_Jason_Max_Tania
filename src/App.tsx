@@ -1,18 +1,19 @@
-import './App.css';
-import Header from './sections/Header';
-import Content from './sections/Content';
+import './App.css'
+import Header from './sections/Header'
+import Content from './sections/Content'
 import Footer from './sections/Footer';
-import PinkSection from './components/inputPage';
+import Button from "./buttons/Button";
 
 function App() {
 	return (
 		<>
 			<Header />
 			<Content />
-			<PinkSection />
+			
+			<Button />
 			<Footer />
 		</>
-	);
-}
+  );
+}	
 
 export default App;
