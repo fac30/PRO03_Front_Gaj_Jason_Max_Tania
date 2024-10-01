@@ -4,6 +4,7 @@
 function Footer() {
   return (
     <footer>
+				<hr/>		
 				<pre>
 					k thx bai
 				</pre>
