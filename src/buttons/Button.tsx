@@ -29,4 +29,3 @@ const Button: React.FC<ButtonProps> = ({ onClick, label, disabled = false, loadi
 };
 
 export default Button;
-export default Button;
