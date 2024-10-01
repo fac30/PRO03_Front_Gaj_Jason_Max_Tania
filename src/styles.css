@@ -1,6 +1,23 @@
 /* Custom styles go here if needed */
 
 /* Colours for the app: */
+:root {
+    /* interface main colours */
+    --green: #0ca444;
+    --pink: #faa4f6;
+    --purple: #9a5b93;
+    --yellow: #f6ea24;
+    /* component colours */
+    --hand-green: #0ca444;
+    --navbar-blue: #929cf8;
+    --light-blue: #a2b3da;
+    /* button colours */
+    --button-default: #64558f;
+    --button-hover: #4e4370;
+    --button-disabled: #d4cfe2;
+    --button-active: #383050;
+    --button-loading: #9b8fbc;
+}
 /* #0ca444 - green for the loading page*/
 /* #0ca444 - green for the hand on the home page*/
 /* #faa4f6 - pink for the Input page */

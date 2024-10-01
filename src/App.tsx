@@ -1,9 +1,7 @@
 import './App.css'
 import Header from './sections/Header'
 import Content from './sections/Content'
-import Footer from './sections/Footer'
-import Button from './buttons/Button';
-//import RoundedButton from './buttons/Button'
+import Footer from './sections/Footer';
 
 function App() {
   return (
@@ -16,6 +14,6 @@ function App() {
 			<Footer />
 		</>
   );
-}
+}	
 
 export default App;
