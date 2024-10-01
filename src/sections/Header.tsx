@@ -7,6 +7,7 @@ function Header() {
 				<h1>
 					MoodTime
 				</h1>
+				<hr/>
 		</header>
   )
 }

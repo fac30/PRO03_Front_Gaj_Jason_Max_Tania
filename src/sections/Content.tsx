@@ -1,13 +1,14 @@
-//import statements
+/* import Landing from '../pages/Landing'; */
+/* import Input from '../pages/Input'; */
+/* import Loading from '../pages/Loading'; */
+/* import Playlist from '../pages/Playlist'; */
 
-// declare the component with a capitalised name
 function Content() {
   return (
     <main>
-			<p>Stuff Goes Here</p>
+			<p>No content here, peasant.</p>
 		</main>
   )
 }
 
-// separate export statement, so it is easy to see at a glance
 export default Content;

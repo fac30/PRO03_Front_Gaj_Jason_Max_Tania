@@ -1,7 +1,7 @@
-function InputName() {
+function NameInput() {
 	return (
 		<input type="text" placeholder="What's Your Name?" />
 	)
 }
 
-export default InputName;
+export default NameInput;
