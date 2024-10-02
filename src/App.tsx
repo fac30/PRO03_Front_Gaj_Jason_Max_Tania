@@ -4,12 +4,13 @@ import Content from './sections/Content';
 import Footer from './sections/Footer';
 
 function App() {
+  
   return (
-		<>
+		<div className="min-h-screen">
 			<Header />
 			<Content />
 			<Footer />
-		</>
+		</div>
   );
 }	
 
