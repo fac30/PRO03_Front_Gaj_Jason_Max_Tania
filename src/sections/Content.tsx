@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react';
 import DevTools from './DevTools';
 import LandingPage from '../pages/LandingPage';
-import InputPage from '../pages/InputPage';
-// import Loading from '../pages/Loading';
+import InputPage from '../pages/inputPage';
+import LoadingPage from '../pages/LoadingPage';
 import PlaylistPage from '../pages/PlaylistPage';
 import DummyPage from '../pages/DummyPage';
 
@@ -34,7 +34,7 @@ function Content() {
 			case 'input':
 				return <InputPage onNext={() => setCurrentPage('loading')} />;
 			case 'loading':
-				return <DummyPage onNext={() => setCurrentPage('playlist')} />;
+				return <LoadingPage onNext={() => setCurrentPage('playlist')} />;
 			case 'playlist':
 				return <PlaylistPage onNext={() => setCurrentPage('landing')} />;
 			default:
