@@ -1,16 +1,10 @@
 import { createContext, useState } from 'react';
 import DevTools from './DevTools';
 import LandingPage from '../pages/LandingPage';
-import InputPage from '../pages/InputPage';
+import InputPage from '../pages/inputPage';
 // import Loading from '../pages/Loading';
-<<<<<<< HEAD
-import Playlist from '../pages/Playlist';
-import Dummy from '../pages/Dummy';
-import InputPage from '../pages/InputPage';
-=======
 import PlaylistPage from '../pages/PlaylistPage';
 import DummyPage from '../pages/DummyPage';
->>>>>>> main
 
 interface UserContextType {
 	userName: string;

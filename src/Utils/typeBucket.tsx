@@ -11,5 +11,6 @@ export type userName = {
 
 export interface LabelProps {
 	htmlFor: string;
-	children: React.ReactNode;
+        children: React.ReactNode;
+        className: string;
 }

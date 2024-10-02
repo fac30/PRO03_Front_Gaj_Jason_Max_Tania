@@ -4,63 +4,51 @@ import HeroTxt from '../components/HeroTxt';
 import Genre from '../components/Genre';
 import OpenQuestion from '../components/OpenQuestion';
 import Date from '../components/Date';
+import Button from '../buttons/Button';
 
 interface InputProps {
 	onNext: () => void;
 }
 
-<<<<<<< HEAD
-export default function InputPage() {
-    const [userName, setUserName] = React.useState("Ga");
-    const [userResponse, setUserResponse] = React.useState({
-        day: "",
-        feel: "",
-        genre: "",
-        quant: 6});
-=======
 function InputPage({ onNext }: InputProps) {
 	const { userName } = useContext(UserContext);
-	
+
 	const [userResponse, setUserResponse] = React.useState({
 		date: Date(),
-		feel: "",
-		genre: "",
-		quant: NaN
+		feel: '',
+		genre: '',
+		quant: NaN,
 	});
->>>>>>> main
- 
+
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setUserResponse({
 			date: event.currentTarget.date.value,
 			feel: event.currentTarget.feel.value,
 			genre: event.currentTarget.genre.value,
-			quant: 6
+			quant: 6,
 		});
 		console.log(userResponse);
 		//TODO: CALL THE API HERE
 
 		onNext();
-	}
+	};
 
 	return (
-		<div className='bg-pink-300'>
-<<<<<<< HEAD
-            <HeroTxt userName={} primaryText={'Unleash the power of your emotions,'} />
-=======
+		<section id='inputPage' className='bg-[var(--pink)] flex-col justify-center items-center'>
 			<HeroTxt
 				userName={userName}
 				primaryText={'Unleash the power of your emotions'}
 			/>
->>>>>>> main
 
 			<form onSubmit={handleSubmit}>
-				<Date/>
-				<OpenQuestion/>
-				<Genre/>
-				<button type="submit">Next</button>
+				<Date />
+				<OpenQuestion />
+				<Genre />
+
+				<Button onClick={onNext} label='Get playlist' />
 			</form>
-		</div>
+		</section>
 	);
 }
 

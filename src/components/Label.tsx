@@ -1,18 +1,10 @@
 import { LabelProps } from '../utils/typeBucket';
 
-<<<<<<< HEAD
-export default function Label({ htmlFor, children }: LabelProps)  {
+function Label({ htmlFor, children, className }: LabelProps)  {
   return (
-    <label htmlFor={htmlFor}>
-      {children}
-    </label>
-=======
-function Label({ htmlFor, children }: LabelProps)  {
-  return (
-    <label htmlFor={htmlFor}>
+    <label htmlFor={htmlFor} className={className}>
 			{children}
 		</label>
->>>>>>> main
   );
 }
 
