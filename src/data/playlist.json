@@ -1,0 +1,42 @@
+[
+    {
+        "id": "6eozUVzr02EXMji1vuxgiP",
+        "title": "Don't Wanna Fall in Love",
+        "artist": "Jane Child",
+        "album": "Jane Child",
+        "releaseDate": "1989-01-01T00:00:00.000Z",
+        "duration": 247840
+    },
+    {
+        "id": "3J0AoQhAufniMrznCRJASD",
+        "title": "I Drove All Night",
+        "artist": "Cyndi Lauper",
+        "album": "A Night To Remember",
+        "releaseDate": "1989-05-09T00:00:00.000Z",
+        "duration": 251506
+    },
+    {
+        "id": "4pQRZpZDg4hxsMVJ7rEDdz",
+        "title": "Topaz",
+        "artist": "The B-52's",
+        "album": "Cosmic Thing",
+        "releaseDate": "1989-06-23T00:00:00.000Z",
+        "duration": 261398
+    },
+    {
+        "id": "09yRhuaZ6Oxq6QiHnV3QZT",
+        "title": "Sugar Bee",
+        "artist": "Wayne Toups",
+        "album": "Blast From The Bayou",
+        "releaseDate": "1989-01-01T00:00:00.000Z",
+        "duration": 184040
+    },
+    {
+        "id": "4k0bXm9Q4RaTuYi09i4lKK",
+        "title": "Jump (For My Love)",
+        "artist": "The Pointer Sisters",
+        "album": "Fire! The Very Best of The Pointer Sisters",
+        "releaseDate": "1989-09-21T00:00:00.000Z",
+        "duration": 263440
+    }
+]
