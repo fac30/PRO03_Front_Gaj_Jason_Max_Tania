@@ -4,7 +4,7 @@ interface DummyProps {
 	onNext: () => void;
 }
 
-function Dummy({ onNext }: DummyProps) {
+function DummyPage({ onNext }: DummyProps) {
   return (
     // render background image that fills the whole component
 		<div>
@@ -14,4 +14,4 @@ function Dummy({ onNext }: DummyProps) {
   )
 }
 
-export default Dummy;
+export default DummyPage;

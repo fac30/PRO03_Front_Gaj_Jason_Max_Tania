@@ -6,7 +6,7 @@ interface LandingProps {
 	setUserName: (name: string) => void;
 }
 
-function Landing({ onNext, setUserName }: LandingProps) {
+function LandingPage({ onNext, setUserName }: LandingProps) {
 	const handleSubmit = (name: string) => {
 		setUserName(name);
 		onNext();
@@ -20,4 +20,4 @@ function Landing({ onNext, setUserName }: LandingProps) {
 	)
 }
 
-export default Landing;
+export default LandingPage;

@@ -1,8 +1,8 @@
-import React from 'react'
+// import React from 'react'
 import Label from './Label'
-import { LabelProps } from '../Utils/typeBucket'
 
 export default function OpenQuestion () {
+<<<<<<< HEAD
     return (
     <>
     {/* Input for how the user felt */}
@@ -11,4 +11,13 @@ export default function OpenQuestion () {
     </>
 
   )
+=======
+	return (
+		<>
+			<Label htmlFor="inputFeel" children="How did you feel on that date?"/>
+			<textarea id="inputFeel" name="feel">
+			</textarea>
+		</>
+	)
+>>>>>>> main
 }
