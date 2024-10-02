@@ -3,16 +3,21 @@ import LandingText from '../text/LandingText';
 
 interface LandingProps {
 	onNext: () => void;
+	setUserName: (name: string) => void;
 }
 
-function Landing({ onNext }: LandingProps) {
-  return (
-    // render background image that fills the whole component
+function Landing({ onNext, setUserName }: LandingProps) {
+	const handleSubmit = (name: string) => {
+		setUserName(name);
+		onNext();
+	};
+
+	return (
 		<>
 			<LandingText />
-			<NameForm onSubmit={onNext} />
+			<NameForm onSubmit={handleSubmit} />
 		</>
-  )
+	)
 }
 
 export default Landing;
