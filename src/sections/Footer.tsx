@@ -1,16 +1,15 @@
-//import statements
-
-// declare the component with a capitalised name
-function Footer() {
+const Footer: React.FC = () => {
   return (
-    <footer>
-				<hr/>		
-				<pre>
-					k thx bai
-				</pre>
-		</footer>
+    <footer
+	  role="contentinfo"
+      className="flex flex-col items-center justify-center bg-[--light-blue] text-sm font-medium py-2 sm:py-8 md:py-10 lg:py-8 px-8 lg:px-8 w-full w-screen-sm md:w-screen-md"
+	>
+		<p className="mt-3 mb-3 text-neutral-900 font-medium">
+            &copy; 2024 SpotifyMoodList, Inc. All rights reserved.
+        </p>	
+	</footer>
   )
 }
 
-// separate export statement, so it is easy to see at a glance
+
 export default Footer;

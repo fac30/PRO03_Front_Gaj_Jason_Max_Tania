@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../buttons/Button';
 import NameInput from '../inputs/NameInput';
 
 interface NameFormProps {
-	onSubmit: () => void;
+  onSubmit: (name: string) => void;
 }
 
 function NameForm({ onSubmit }: NameFormProps) {
+	const [name, setName] = useState('');
+
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		onSubmit();
+		onSubmit(name);
 	};
 	
 	return (
 		<form onSubmit={handleSubmit}>
-			<NameInput />
+			<NameInput value={name} onChange={setName} />
 			<Button
-				onClick={() => {
-					console.log('Landing Button Clicked');
-				}}
+				onClick={() => {}} // Add an empty onClick handler
 				label="Let's Make a Playlist"
 			/>
 		</form>
