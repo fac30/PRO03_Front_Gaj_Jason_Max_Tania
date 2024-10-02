@@ -1,12 +1,12 @@
 import React from 'react';
-import { hero } from '../Utils/typeBucket';
+import { userName  } from '../Utils/typeBucket';
 
-export default function HeroTxt({ heroText, heroName }: hero) {
+export default function HeroTxt({ primaryText, userName }:  userName) {
 	return (
 		<>
-			<h3>
-				{heroText},<span>{heroName}</span>
-			</h3>
+			<p>
+				{primaryText},<span>{userName}</span>
+			</p>
 		</>
 	);
 }

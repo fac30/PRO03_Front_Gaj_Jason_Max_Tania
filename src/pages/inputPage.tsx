@@ -1,6 +1,8 @@
 import React from 'react';
-import HeroTxt from './HeroTxt';
-import PinkForm from './Form';
+import HeroTxt from '../components/HeroTxt';
+import Genre from '../components/Genre';
+import OpenQuestion from '../components/OpenQuestion';
+import Date from '../components/Date';
 
 
 export default function PinkSection() {
@@ -10,13 +12,17 @@ export default function PinkSection() {
         feel: "",
         genre: "",
         quant: 6});
-
-
-
+ 
 	return (
 		<div className='bg-pink-300'>
-            <HeroTxt heroName={'Gajjy Gaj gaj'} heroText={'Gaj is great'} />
-            <PinkForm/>
+            <HeroTxt userName={"gaj"} primaryText={'Unleash the power of your emotions,'} />
+
+            <form>
+                <Date/>
+                <OpenQuestion/>
+                <Genre/>
+            </form>
+             
 		</div>
 	);
 }
