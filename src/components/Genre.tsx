@@ -13,9 +13,7 @@ export default function Genre() {
 
   return (
     <>
-      <Label htmlFor="genre" name="genre">
-        Select Genre:
-      </Label>
+      <Label htmlFor="genre" children="What genre of music is this?" />
       <select
         name="genre"
         id="genre"

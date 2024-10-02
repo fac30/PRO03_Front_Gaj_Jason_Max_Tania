@@ -6,7 +6,7 @@ export default function OpenQuestion () {
     return (
     <>
     {/* Input for how the user felt */}
-     <Label/>
+     <Label htmlFor='question-two' children="How did you feel then?"/>
             <textarea id="question-two" name="question-two"></textarea>
     </>
 

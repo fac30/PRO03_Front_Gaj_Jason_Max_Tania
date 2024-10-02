@@ -1,9 +1,9 @@
 import React from 'react'
 import { LabelProps } from '../Utils/typeBucket';
 
-export default function Label({ htmlFor, name, children }: LabelProps)  {
+export default function Label({ htmlFor, children }: LabelProps)  {
   return (
-    <label htmlFor={htmlFor} name={name}>
+    <label htmlFor={htmlFor}>
       {children}
     </label>
   );

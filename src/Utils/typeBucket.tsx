@@ -11,6 +11,5 @@ export type buttonProps = {
       
       export interface LabelProps {
         htmlFor: string;
-        name: string;
         children: React.ReactNode;
       }
