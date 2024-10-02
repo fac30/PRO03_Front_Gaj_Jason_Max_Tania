@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+:root {
+  --lightgreen: #90ee90; /* Your desired light green color */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

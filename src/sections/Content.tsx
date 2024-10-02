@@ -5,6 +5,7 @@ import Landing from '../pages/Landing';
 // import Loading from '../pages/Loading';
 import Playlist from '../pages/Playlist';
 import Dummy from '../pages/Dummy';
+import Loading from '../pages/Loading';
 
 interface UserContextType {
 	userName: string;
@@ -34,7 +35,7 @@ function Content() {
 			case 'input':
 				return <Dummy onNext={() => setCurrentPage('loading')} />;
 			case 'loading':
-				return <Dummy onNext={() => setCurrentPage('playlist')} />;
+				return <Loading onNext={() => setCurrentPage('playlist')} />;
 			case 'playlist':
 				return <Playlist onNext={() => setCurrentPage('playlist')} />;
 			default:
