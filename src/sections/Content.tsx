@@ -11,12 +11,12 @@ interface UserContextType {
 	setUserName: (name: string) => void;
 }
 
-const UserContext = createContext<UserContextType>({
+export const UserContext = createContext<UserContextType>({
 	userName: "",
 	setUserName: () => {},
 });
 
-function Content() {
+const Content: React.FC = () => {
 	const [currentPage, setCurrentPage] = useState('landing');
 	const [userName, setUserName] = useState("");
 
@@ -52,4 +52,4 @@ function Content() {
 	)
 }
 
-export { Content, UserContext };
+export default Content;
