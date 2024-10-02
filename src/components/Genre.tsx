@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Label from './Label';
-import { LabelProps } from '../Utils/typeBucket';
 
 export default function Genre() {
   const genres = ['Pop', 'Rock', 'Jazz', 'Hip-Hop']; // Static array of genres
@@ -13,7 +12,7 @@ export default function Genre() {
 
   return (
     <>
-      <Label htmlFor="genre" name="genre">
+      <Label htmlFor="genre">
         Select Genre:
       </Label>
       <select

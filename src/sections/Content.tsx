@@ -1,10 +1,10 @@
 import { createContext, useState } from 'react';
 import DevTools from './DevTools';
-import Landing from '../pages/Landing';
-// import Input from '../pages/Input';
+import LandingPage from '../pages/LandingPage';
+import InputPage from '../pages/InputPage';
 // import Loading from '../pages/Loading';
-import Playlist from '../pages/Playlist';
-import Dummy from '../pages/Dummy';
+import PlaylistPage from '../pages/PlaylistPage';
+import DummyPage from '../pages/DummyPage';
 
 interface UserContextType {
 	userName: string;
@@ -28,17 +28,17 @@ function Content() {
 	const renderPage = () => {
 		switch (currentPage) {
 			case 'dummy':
-				return <Dummy onNext={() => setCurrentPage('landing')} />;
+				return <DummyPage onNext={() => setCurrentPage('landing')} />;
 			case 'landing':
-				return <Landing onNext={() => setCurrentPage('input')} setUserName={setUserName} />;
+				return <LandingPage onNext={() => setCurrentPage('input')} setUserName={setUserName} />;
 			case 'input':
-				return <Dummy onNext={() => setCurrentPage('loading')} />;
+				return <InputPage onNext={() => setCurrentPage('loading')} />;
 			case 'loading':
-				return <Dummy onNext={() => setCurrentPage('playlist')} />;
+				return <DummyPage onNext={() => setCurrentPage('playlist')} />;
 			case 'playlist':
-				return <Playlist onNext={() => setCurrentPage('playlist')} />;
+				return <PlaylistPage onNext={() => setCurrentPage('landing')} />;
 			default:
-				return <Dummy onNext={() => setCurrentPage('Landing')} />;
+				return <DummyPage onNext={() => setCurrentPage('landing')} />;
 		}
 	};
 
