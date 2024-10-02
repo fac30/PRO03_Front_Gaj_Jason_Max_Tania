@@ -3,7 +3,7 @@ import Header from './sections/Header';
 //import Content from './sections/Content';
 import Footer from './sections/Footer';
 
-import Loading from './pages/Loading';
+import LoadingPage from './pages/LoadingPage';
 import { useState, useEffect } from 'react';
 
 
@@ -20,14 +20,16 @@ function App() {
     return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
-			<main className="flex-grow flex justify-center items-center"> {/* class expands to fill the available space between the header and footer. */}
+			{/* Main will center the content without pushing the footer */}
+			<main className="flex-grow flex justify-center items-center min-h-0">
 			    {/*<Content />*/}
+				{/**/}
 
                     {loading ? (
-						<Loading loading={loading} />
+						<LoadingPage loading={loading} bgColor="#94CD31" />
 						) : (
-							<div>
-							<h1>Data has been loaded!</h1>
+							<div className="flex justify-center items-center w-full h-full">
+								<p>Data has been loaded!</p>
 							</div>
 						)}
 
