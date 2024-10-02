@@ -23,7 +23,7 @@ function InputPage({ onNext }: InputProps) {
 		<div className='bg-pink-300'>
 			<HeroTxt
 				userName={userName}
-				primaryText={'Unleash the power of your emotions,'}
+				primaryText={'Unleash the power of your emotions'}
 			/>
 
 			<form>

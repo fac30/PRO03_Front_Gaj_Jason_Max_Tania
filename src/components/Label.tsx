@@ -1,5 +1,5 @@
-import React from 'react'
-import { LabelProps } from '../Utils/typeBucket';
+// import React from 'react';
+import { LabelProps } from '../utils/typeBucket';
 
 export default function Label({ htmlFor, name, children }: LabelProps)  {
   return (

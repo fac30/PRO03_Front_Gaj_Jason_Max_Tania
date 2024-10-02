@@ -1,6 +1,6 @@
-import React from 'react'
+// import React from 'react'
 import Label from './Label'
-import { LabelProps } from '../Utils/typeBucket'
+import { LabelProps } from '../utils/typeBucket'
 
 export default function OpenQuestion () {
     return (

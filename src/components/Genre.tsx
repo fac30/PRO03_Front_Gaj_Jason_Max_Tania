@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Label from './Label';
-import { LabelProps } from '../Utils/typeBucket';
+import { LabelProps } from '../utils/typeBucket';
 
 export default function Genre() {
   const genres = ['Pop', 'Rock', 'Jazz', 'Hip-Hop']; // Static array of genres
