@@ -16,7 +16,7 @@ export const UserContext = createContext<UserContextType>({
 	setUserName: () => {},
 });
 
-const Content: React.FC = () => {
+function Content() {
 	const [currentPage, setCurrentPage] = useState('landing');
 	const [userName, setUserName] = useState("");
 
