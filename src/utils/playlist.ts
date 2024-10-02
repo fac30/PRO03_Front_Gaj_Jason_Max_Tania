@@ -7,4 +7,4 @@ export interface TrackProps {
     duration: number
 };
 
-export type TracklistProps = Array<TrackProps>;
+export type TracklistProps = TrackProps[];
