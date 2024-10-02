@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
-
     return (
       <header className="bg-[#929cf8] text-black p-4 w-full"> 
        <div className="flex justify-between items-center w-full">
