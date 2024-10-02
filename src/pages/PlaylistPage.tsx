@@ -10,7 +10,7 @@ interface PlaylistProps {
   onNext: () => void;
 }
 
-function Playlist({ onNext }: PlaylistProps) {
+function PlaylistPage({ onNext }: PlaylistProps) {
   const { userName } = useContext(UserContext);
 
   return (
@@ -39,4 +39,4 @@ function Playlist({ onNext }: PlaylistProps) {
   );
 }
 
-export default Playlist;
+export default PlaylistPage;
