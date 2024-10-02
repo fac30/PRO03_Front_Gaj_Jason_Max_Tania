@@ -13,12 +13,26 @@ function InputPage({ onNext }: InputProps) {
 	const { userName } = useContext(UserContext);
 	
 	const [userResponse, setUserResponse] = React.useState({
-		day: "",
+		date: Date(),
 		feel: "",
 		genre: "",
-		quant: 6
+		quant: NaN
 	});
  
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setUserResponse({
+			date: event.currentTarget.date.value,
+			feel: event.currentTarget.feel.value,
+			genre: event.currentTarget.genre.value,
+			quant: 6
+		});
+		console.log(userResponse);
+		//TODO: CALL THE API HERE
+
+		onNext();
+	}
+
 	return (
 		<div className='bg-pink-300'>
 			<HeroTxt
@@ -26,10 +40,11 @@ function InputPage({ onNext }: InputProps) {
 				primaryText={'Unleash the power of your emotions'}
 			/>
 
-			<form>
+			<form onSubmit={handleSubmit}>
 				<Date/>
 				<OpenQuestion/>
 				<Genre/>
+				<button type="submit">Next</button>
 			</form>
 		</div>
 	);

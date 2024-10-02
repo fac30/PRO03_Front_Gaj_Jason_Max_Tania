@@ -4,8 +4,8 @@ import Label from './Label';
 export default function Date() {
     return (
       <>
-				<Label htmlFor="day" name="day"></Label>
-				<input type="text" id="day" name="day" />
+				<Label htmlFor="date" children="Date" />
+				<input type="text" id="date" name="date" />
 			</>
   )
 }

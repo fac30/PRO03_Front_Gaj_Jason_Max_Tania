@@ -36,9 +36,9 @@ function Content() {
 			case 'loading':
 				return <DummyPage onNext={() => setCurrentPage('playlist')} />;
 			case 'playlist':
-				return <PlaylistPage onNext={() => setCurrentPage('playlist')} />;
+				return <PlaylistPage onNext={() => setCurrentPage('landing')} />;
 			default:
-				return <DummyPage onNext={() => setCurrentPage('Landing')} />;
+				return <DummyPage onNext={() => setCurrentPage('landing')} />;
 		}
 	};
 
