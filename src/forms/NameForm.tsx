@@ -2,6 +2,7 @@ import Button from '../buttons/Button';
 import NameInput from '../inputs/NameInput';
 
 function NameForm() {
+	// useContext from App
 	return (
 		<form>
 			<NameInput />
