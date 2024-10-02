@@ -6,9 +6,9 @@ import Footer from './sections/Footer';
 function App() {
   
   return (
-		<div className="min-h-screen">
+		<div className="flex flex-col min-h-screen">
 			<Header />
-			<Content />
+			<Content/>
 			<Footer />
 		</div>
   );

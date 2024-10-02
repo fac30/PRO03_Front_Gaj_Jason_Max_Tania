@@ -1,8 +1,8 @@
 import React, { useState} from "react";
 import {Link} from 'react-router-dom';
+import logo from '../assets/logo_background.png';
 
 
-// declare the component with a capitalised name
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -13,9 +13,9 @@ const Header: React.FC = () => {
           {/* Left side: Logo and Brand Name */}
           <div className="flex items-center space-x-3">
             <img
-              src="logo_background.png" // Replace this with the actual path to your logo
+              src={logo}
               alt="Brand Logo"
-              className="h-8 w-8"
+              className="h-16 w-16 rounded-full"
             />
             <span className="text-xl font-bold">SpotifyMoodList</span>
           </div>
@@ -24,7 +24,7 @@ const Header: React.FC = () => {
           <nav>
             <div className="relative">
               <button
-                className="text-3xl focus:outline-none"
+                className="text-3xl focus:outline-none bg-[#929cf8]"
                 onClick={() => setMenuOpen(!menuOpen)}
               >
                 &#x22EE; {/* Unicode for vertical ellipsis */}
@@ -53,5 +53,5 @@ const Header: React.FC = () => {
   )
 }
 
-// separate export statement, so it is easy to see at a glance
+
 export default Header;
