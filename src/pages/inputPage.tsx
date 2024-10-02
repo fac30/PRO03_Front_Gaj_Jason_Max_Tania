@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../sections/Content';
 import HeroTxt from '../components/HeroTxt';
 import Genre from '../components/Genre';
@@ -14,11 +14,40 @@ function InputPage({ onNext }: InputProps) {
 	const { userName } = useContext(UserContext);
 
 	const [userResponse, setUserResponse] = React.useState({
-		date: Date(),
-		feel: '',
-		genre: '',
-		quant: NaN,
+		date: "",
+		feel: "",
+		genre: "",
+		quant: NaN
 	});
+
+	useEffect(() => {
+		const callAPI = async () => {
+			if (userResponse.date && userResponse.feel && userResponse.genre && !isNaN(userResponse.quant)) {
+				try {
+					const response = await fetch(
+						`http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(userResponse.genre)}&eventDescription=${encodeURIComponent(userResponse.feel)}&date=${encodeURIComponent(userResponse.date)}T00:00:00.000Z&playlistCount=${encodeURIComponent(userResponse.quant)}`,
+						{
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						}
+					);
+
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+
+					const data = await response.json();
+					console.log(data);
+				} catch (error) {
+					console.error('Error calling API:', error);
+				}
+			}
+		};
+
+		callAPI();
+	}, [userResponse]);
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -28,11 +57,8 @@ function InputPage({ onNext }: InputProps) {
 			genre: event.currentTarget.genre.value,
 			quant: 6,
 		});
-		console.log(userResponse);
-		//TODO: CALL THE API HERE
-
-		onNext();
-	};
+		// onNext();
+	}
 
 	return (
 		<section id='inputPage' className='bg-[var(--pink)] flex-col justify-center items-center'>
