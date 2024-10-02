@@ -5,7 +5,7 @@ import OpenQuestion from '../components/OpenQuestion';
 import Date from '../components/Date';
 
 
-export default function PinkSection() {
+export default function InputPage() {
     const [userName, setUserName] = React.useState("Ga");
     const [userResponse, setUserResponse] = React.useState({
         day: "",
@@ -15,7 +15,7 @@ export default function PinkSection() {
  
 	return (
 		<div className='bg-pink-300'>
-            <HeroTxt userName={"gaj"} primaryText={'Unleash the power of your emotions,'} />
+            <HeroTxt userName={} primaryText={'Unleash the power of your emotions,'} />
 
             <form>
                 <Date/>

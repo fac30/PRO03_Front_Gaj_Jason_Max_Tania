@@ -5,6 +5,7 @@ import Landing from '../pages/Landing';
 // import Loading from '../pages/Loading';
 import Playlist from '../pages/Playlist';
 import Dummy from '../pages/Dummy';
+import InputPage from '../pages/InputPage';
 
 interface UserContextType {
 	userName: string;
