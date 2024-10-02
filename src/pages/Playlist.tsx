@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import Button from '../buttons/Button';
+import { UserContext } from '../sections/Content';
 import playlist from '../data/playlist.json';
 import Tracklist from '../playlist/Tracklist';
 import { TracklistProps } from '../utils/playlist';
@@ -8,9 +10,11 @@ interface PlaylistProps {
 }
 
 function Playlist({ onNext }: PlaylistProps) {
-  return (
-    // render background image that fills the whole component
+	const { userName } = useContext(UserContext);
+
+	return (
 		<>
+			<h2>Welcome, {userName}!</h2>
             <div className="App">
                 <h1>My Spotify Playlist</h1>
                 {/* Pass playlistData to the Playlist component */}
@@ -29,7 +33,7 @@ function Playlist({ onNext }: PlaylistProps) {
                 loading={false}
             />
 		</>
-  )
+	)
 }
 
 export default Playlist;
