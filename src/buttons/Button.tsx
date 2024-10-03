@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
 interface ButtonProps {
-  onClick: () => void;
   label: string;
   disabled?: boolean;
   loading?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, label, disabled = false, loading = false }) => {
+const Button: React.FC<ButtonProps> = ({ label, disabled = false, loading = false }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <button
-      onClick={onClick}
+      type="submit"
       disabled={disabled || loading}
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
@@ -29,7 +28,3 @@ const Button: React.FC<ButtonProps> = ({ onClick, label, disabled = false, loadi
 };
 
 export default Button;
-
- 
-
-

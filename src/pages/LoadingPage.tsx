@@ -21,6 +21,8 @@ const LoadingPage: React.FC<LoadingProps> = ({ onNext }) => {
 	}, []);
 
   return (
+
+
     <div className='bg-[#94CD31] flex justify-center items-center w-full h-full'>
       {loading && (
         <DotLottieReact
@@ -31,5 +33,6 @@ const LoadingPage: React.FC<LoadingProps> = ({ onNext }) => {
     </div>
   );
 };
+
 
 export default LoadingPage;

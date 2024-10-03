@@ -21,34 +21,37 @@ function InputPage({ onNext }: InputProps) {
     quant: NaN
   });
 
-  useEffect(() => {
-    const callAPI = async () => {
-      if (userResponse.date && userResponse.feel && userResponse.genre && !isNaN(userResponse.quant)) {
-        try {
-          const response = await fetch(
-            `http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(userResponse.genre)}&eventDescription=${encodeURIComponent(userResponse.feel)}&date=${encodeURIComponent(userResponse.date)}T00:00:00.000Z&playlistCount=${encodeURIComponent(userResponse.quant)}`,
-            {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+	useEffect(() => {
+		const callAPI = async () => {
+			if (userResponse.date && userResponse.feel && userResponse.genre && !isNaN(userResponse.quant)) {
+				try {
+					const response = await fetch(
+						`http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(userResponse.genre)}&eventDescription=${encodeURIComponent(userResponse.feel)}&date=${encodeURIComponent(userResponse.date)}T00:00:00.000Z&playlistCount=${encodeURIComponent(userResponse.quant)}`,
+						{
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+						}
+					);
 
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
+					// Call onNext after initiating the API call
+					onNext();
 
-          const data = await response.json();
-          console.log(data);
-        } catch (error) {
-          console.error('Error calling API:', error);
-        }
-      }
-    };
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
 
-    callAPI();
-  }, [userResponse]);
+					const data = await response.json();
+					console.log(data);
+				} catch (error) {
+					console.error('Error calling API:', error);
+				}
+			}
+		};
+
+		callAPI();
+	}, [userResponse, onNext]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
