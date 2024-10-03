@@ -5,6 +5,7 @@ import Genre from '../components/Genre';
 import OpenQuestion from '../components/OpenQuestion';
 import Date from '../components/Date';
 import Button from '../buttons/Button';
+import Footer from '../sections/Footer';
 
 interface InputProps {
   onNext: () => void;
@@ -73,7 +74,8 @@ function InputPage({ onNext }: InputProps) {
           <Date />
           <OpenQuestion />
           <Genre />
-
+            
+          {/* need to put the radios wihtin its own component*/}
           <div className="flex justify-center space-x-4 my-4">
             {[5, 10, 15].map(num => (
               <button
@@ -87,12 +89,13 @@ function InputPage({ onNext }: InputProps) {
             ))}
           </div>
 
-          <Button onClick={onNext} label='Create playlist' />
+          <Button onClick={()=> handleSubmit} label='Create playlist' />
+          
         </form>
       </div>
 
       {/* Footer */}
-
+          
     </div>
   );
 }
