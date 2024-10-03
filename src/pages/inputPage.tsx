@@ -92,10 +92,7 @@ function InputPage({ onNext }: InputProps) {
       </div>
 
       {/* Footer */}
-      <div className="bg-blue-200 p-4 flex justify-between items-center">
-        <p className="text-gray-600">blabla blabla bla</p>
-        <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-      </div>
+
     </div>
   );
 }
