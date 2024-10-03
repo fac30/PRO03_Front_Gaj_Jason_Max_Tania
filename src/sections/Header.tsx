@@ -17,7 +17,7 @@ const Header: React.FC = () => {
               alt="Brand Logo"
               className="h-16 w-16 rounded-full"
             />
-            <span className="text-xl font-bold">SpotifyMoodList</span>
+            <span className="text-xl font-bold">MoodTime</span>
           </div>
 
           {/* Right side: Menu with three dots */}

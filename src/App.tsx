@@ -2,14 +2,16 @@ import './App.css';
 import Header from './sections/Header';
 import Content from './sections/Content';
 import Footer from './sections/Footer';
+
+
 function App() {
-	return (
-		<div className='flex flex-col min-h-screen'>
+  
+    return (
+		<div className="flex flex-col min-h-screen">
 			<Header />
-			<main className='flex-grow justify-center align-items '>
-				{' '}
-				{/* class expands to fill the available space between the header and footer. */}
-				<Content />
+			{/* Main will center the content without pushing the footer */}
+			<main className="flex-grow flex justify-center items-center min-h-0">
+			    <Content />
 			</main>
 			<Footer />
 		</div>
