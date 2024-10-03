@@ -66,39 +66,36 @@ function InputPage({ onNext }: InputProps) {
 
   return (
     <div className="bg-[var(--pink)] min-h-screen flex flex-col">
-      {/* Main Content */}
-      <div className="flex-grow p-6">
-        <HeroTxt
-          userName={userName}
-          primaryText={'UNLEASH THE POWER OF YOUR EMOTIONS'}
-        />
+      <main className="flex-grow p-4 md:p-6 flex flex-col items-center justify-center">
+        <div className="w-full max-w-md space-y-6">
+          <HeroTxt
+            userName={userName}
+            primaryText={'UNLEASH THE POWER OF YOUR EMOTIONS'}
+          />
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Date />
-          <OpenQuestion />
-          <Genre />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <Date />
+            <OpenQuestion />
+            <Genre />
             
-          {/* need to put the radios wihtin its own component*/}
-          <div className="flex justify-center space-x-4 my-4">
-            {[5, 10, 15].map(num => (
-              <button
-                key={num}
-                type="button"
-                onClick={() => setUserResponse(prev => ({ ...prev, quant: num }))}
-                className="w-12 h-12 rounded-full bg-purple-400 text-white flex items-center justify-center"
-              >
-                {num}
-              </button>
-            ))}
-          </div>
+            <div className="flex justify-center space-x-4">
+              {[5, 10, 15].map(num => (
+                <button
+                  key={num}
+                  type="button"
+                  onClick={() => setUserResponse(prev => ({ ...prev, quant: num }))}
+                  className={`w-12 h-12 rounded-full ${userResponse.quant === num ? 'bg-purple-600' : 'bg-purple-400'} text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2`}
+                >
+                  {num}
+                </button>
+              ))}
+            </div>
 
-          <Button onClick={()=> handleSubmit} label='Create playlist' />
-          
-        </form>
-      </div>
-
-      {/* Footer */}
-          
+            <Button onClick={handleSubmit} label='Create playlist' className="w-full" />
+          </form>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
