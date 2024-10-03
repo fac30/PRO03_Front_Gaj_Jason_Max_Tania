@@ -1,6 +1,9 @@
 import React, { useEffect, useState} from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
+//install the Lottie:
+// npm install @lottiefiles/dotlottie-react
+
 interface LoadingProps {
   //loading: boolean;
   onNext: () => void;
