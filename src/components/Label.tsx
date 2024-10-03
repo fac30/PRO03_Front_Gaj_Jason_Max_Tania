@@ -1,12 +1,11 @@
-import React from 'react'
-import { LabelProps } from '../Utils/typeBucket';
+import { LabelProps } from '../utils/typeBucket';
 
-export default function Label({ htmlFor, name, children }: LabelProps)  {
+function Label({ htmlFor, children }: LabelProps)  {
   return (
-    <label htmlFor={htmlFor} name={name}>
-      {children}
-    </label>
+    <label htmlFor={htmlFor}>
+			{children}
+		</label>
   );
 }
-      
-  
+
+export default Label;
