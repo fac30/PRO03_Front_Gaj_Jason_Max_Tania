@@ -9,7 +9,7 @@ function LoadingPage({ onNext }: LoadingProps) {
     // render background image that fills the whole component
 		<div>
 			<p>lol no</p>
-			<Button onClick={onNext} label="Back to Landing" />
+			<Button btnClick={onNext} label="ONWARD" />
 		</div>
   )
 }
