@@ -4,8 +4,7 @@ import Label from './Label';
 export default function OpenQuestion() {
 	return (
 		<div className='w-full'>
-			{' '}
-			{/* Adds margin-top (6 * 4px = 24px) */}
+			
 			<Label
 				htmlFor='inputFeel'
 				children='How did you feel on that date?'
