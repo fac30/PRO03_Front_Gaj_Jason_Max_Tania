@@ -2,6 +2,7 @@ export type buttonProps = {
 	btnText: string;
 	btnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 	btnClassName: string;
+	type?: "button" | "submit" | "reset";
 };
 
 export type userName = {
