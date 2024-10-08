@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../sections/Content';
 import HeroTxt from '../text/HeroTxt';
-import Genre from '../components/Genre';
-import OpenQuestion from '../components/OpenQuestion';
+import Genre from '../inputs/Genre';
+import OpenQuestion from '../inputs/OpenQuestion';
 import Date from '../inputs/Date';
 import Button from '../buttons/Button';
-import Footer from '../sections/Footer';
 
 interface InputProps {
   onNext: () => void;
@@ -92,12 +91,10 @@ function InputPage({ onNext }: InputProps) {
             ))}
           </div>
 
-          <Button onClick={()=> handleSubmit} label='Create playlist' />
+          <Button onMouseDown={()=> handleSubmit} label='Create playlist' />
           
         </form>
       </div>
-
-      {/* Footer */}
           
     </div>
   );
