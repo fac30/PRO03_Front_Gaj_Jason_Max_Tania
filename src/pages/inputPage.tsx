@@ -5,6 +5,7 @@ import Genre from '../inputs/Genre';
 import OpenQuestion from '../inputs/OpenQuestion';
 import Date from '../inputs/Date';
 import Button from '../buttons/Button';
+import Radio from '../inputs/Radio';
 
 interface InputProps {
 	onNext: () => void;
@@ -71,7 +72,7 @@ function InputPage({ onNext }: InputProps) {
 			date: event.currentTarget.date.value,
 			feel: event.currentTarget.feel.value,
 			genre: event.currentTarget.genre.value,
-			quant: 6,
+			quant: userResponse.quant,
 		});
 		// onNext();
 	};
@@ -86,12 +87,18 @@ function InputPage({ onNext }: InputProps) {
 					/>
 
 					<form onSubmit={handleSubmit} className='space-y-6'>
-						<div className="flex flex-col items-center mt-4 space-y-6">
+						<div className='flex flex-col items-center mt-4 space-y-6'>
 							<Date />
 							<OpenQuestion />
 							<Genre />
+							<Radio
+								selectedQuant={userResponse.quant}
+								setQuant={(num: number) =>
+									setUserResponse((prev) => ({ ...prev, quant: num }))
+								}
+							/>
 						</div>
-						<Button onClick={()=> handleSubmit} label='Create playlist' />
+						<Button onClick={() => handleSubmit} label='Create playlist' />
 					</form>
 				</div>
 			</main>
@@ -100,4 +107,3 @@ function InputPage({ onNext }: InputProps) {
 }
 
 export default InputPage;
- 
