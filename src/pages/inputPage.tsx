@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../sections/Content';
-import HeroTxt from '../components/HeroTxt';
-import Genre from '../components/Genre';
-import OpenQuestion from '../components/OpenQuestion';
-import Date from '../components/Date';
+import HeroTxt from '../text/HeroTxt';
+import Genre from '../inputs/Genre';
+import OpenQuestion from '../inputs/OpenQuestion';
+import Date from '../inputs/Date';
 import Button from '../buttons/Button';
-import Footer from '../sections/Footer';
 
 interface InputProps {
 	onNext: () => void;
@@ -90,44 +89,13 @@ function InputPage({ onNext }: InputProps) {
 						<Date />
 						<OpenQuestion />
 						<Genre />
-
-						<div className='flex justify-center space-x-4'>
-							{[5, 10, 15].map((num) => (
-								<button
-									key={num}
-									type='button'
-									onClick={() =>
-										setUserResponse((prev) => ({ ...prev, quant: num }))
-									}
-									className={`w-12 h-12 rounded-full ${
-										userResponse.quant === num
-											? 'bg-purple-600'
-											: 'bg-purple-400'
-									} text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2`}
-								>
-									{num}
-								</button>
-							))}
-						</div>
-
-						<Button
-							onClick={handleSubmit}
-							label='Create playlist'
-							className='w-full'
-						/>
+						<Button onClick={()=> handleSubmit} label='Create playlist' />
 					</form>
 				</div>
 			</main>
-			<Footer />
 		</div>
 	);
 }
 
 export default InputPage;
-
-/* Gaj's Notes
-	first step to create a context API 
-	create a used context Api hook
-	transfer the state from the pink Section to the context Api
-	inside the form create a function. 
-	submit the form and inside this function i will need to use context api hook to update the username and user answers.*/
+ 
