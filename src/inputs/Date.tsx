@@ -1,5 +1,5 @@
 import React from 'react'
-import Label from './Label';
+import Label from '../text/Label';
 import { LabelProps } from '../utils/typeBucket';
 
 
