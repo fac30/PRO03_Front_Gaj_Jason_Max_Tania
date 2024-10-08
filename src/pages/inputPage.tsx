@@ -86,9 +86,11 @@ function InputPage({ onNext }: InputProps) {
 					/>
 
 					<form onSubmit={handleSubmit} className='space-y-6'>
-						<Date />
-						<OpenQuestion />
-						<Genre />
+						<div className="flex flex-col items-center mt-4 space-y-6">
+							<Date />
+							<OpenQuestion />
+							<Genre />
+						</div>
 						<Button onClick={()=> handleSubmit} label='Create playlist' />
 					</form>
 				</div>
