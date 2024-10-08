@@ -5,6 +5,7 @@ import Genre from '../inputs/Genre';
 import OpenQuestion from '../inputs/OpenQuestion';
 import Date from '../inputs/Date';
 import Button from '../buttons/Button';
+import Radio from '../inputs/Radio';
 
 interface InputProps {
 	onNext: () => void;
@@ -71,7 +72,7 @@ function InputPage({ onNext }: InputProps) {
 			date: event.currentTarget.date.value,
 			feel: event.currentTarget.feel.value,
 			genre: event.currentTarget.genre.value,
-			quant: 6,
+			quant: userResponse.quant,
 		});
 		// onNext();
 	};
@@ -90,6 +91,10 @@ function InputPage({ onNext }: InputProps) {
 							<Date />
 							<OpenQuestion />
 							<Genre />
+							<Radio 
+								selectedQuant={userResponse.quant} 
+								setQuant={(num) => setUserResponse(prev => ({ ...prev, quant: num }))} 
+							/>
 						</div>
 						<Button onClick={()=> handleSubmit} label='Create playlist' />
 					</form>
