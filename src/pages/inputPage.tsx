@@ -91,7 +91,7 @@ function InputPage({ onNext }: InputProps) {
             ))}
           </div>
 
-          <Button onMouseDown={()=> handleSubmit} label='Create playlist' />
+          <Button onClick={()=> handleSubmit} label='Create playlist' />
           
         </form>
       </div>
