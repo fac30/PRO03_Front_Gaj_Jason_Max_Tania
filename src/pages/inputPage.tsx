@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../sections/Content';
 import HeroTxt from '../text/HeroTxt';
 import Genre from '../inputs/Genre';
 import OpenQuestion from '../inputs/OpenQuestion';
 import Date from '../inputs/Date';
 import Button from '../buttons/Button';
+import LoadingPage from './LoadingPage';
 
 interface InputProps {
   onNext: () => void;
@@ -12,6 +13,7 @@ interface InputProps {
 
 function InputPage({ onNext }: InputProps) {
   const { userName } = useContext(UserContext);
+  const [ loading, setLoading ] = useState(false);
 
   const [userResponse, setUserResponse] = React.useState({
     date: "",
@@ -34,16 +36,19 @@ function InputPage({ onNext }: InputProps) {
 						}
 					);
 
-					// Call onNext after initiating the API call
-					onNext();
+					// // Call onNext after initiating the API call
+					// onNext();
 
 					if (!response.ok) {
+            setLoading(false);
 						throw new Error('Network response was not ok');
 					}
 
 					const data = await response.json();
+          setLoading(false);
 					console.log(data);
 				} catch (error) {
+          setLoading(false);
 					console.error('Error calling API:', error);
 				}
 			}
@@ -54,13 +59,20 @@ function InputPage({ onNext }: InputProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Trigger loading page
+    setLoading(true);
+
     setUserResponse({
       date: event.currentTarget.date.value,
       feel: event.currentTarget.feel.value,
       genre: event.currentTarget.genre.value,
       quant: 6,
     });
-    // onNext();
+  }
+
+  if (loading) {
+    return <LoadingPage />;
   }
 
   return (
