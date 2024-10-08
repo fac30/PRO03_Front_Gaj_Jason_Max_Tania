@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import DevTools from './DevTools';
 import LandingPage from '../pages/LandingPage';
-import InputPage from '../pages/inputPage';
+import InputPage from '../pages/InputPage';
 import LoadingPage from '../pages/LoadingPage';
 import PlaylistPage from '../pages/PlaylistPage';
 import DummyPage from '../pages/DummyPage';
@@ -33,8 +33,8 @@ function Content() {
 				return <LandingPage onNext={() => setCurrentPage('input')} setUserName={setUserName} />;
 			case 'input':
 				return <InputPage onNext={() => setCurrentPage('loading')} />;
-			case 'loading':
-				return <LoadingPage onNext={() => setCurrentPage('playlist')} />;
+			//case 'loading':
+				//return <LoadingPage onNext={() => setCurrentPage('playlist')} />;
 			case 'playlist':
 				return <PlaylistPage onNext={() => setCurrentPage('landing')} />;
 			default:
@@ -43,12 +43,14 @@ function Content() {
 	};
 
 	return (
-		<UserContext.Provider value={userContextValue}>
-			<main>
+		<div className="flex-grow">
+			<UserContext.Provider value={userContextValue}>
+			  <main>
 				{renderPage()}
 				<DevTools setCurrentPage={setCurrentPage} />
-			</main>
-		</UserContext.Provider>
+			  </main>
+		    </UserContext.Provider>
+		</div>		
 	)
 }
 

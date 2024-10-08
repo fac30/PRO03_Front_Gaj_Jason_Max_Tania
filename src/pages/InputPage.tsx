@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../sections/Content';
 import HeroTxt from '../text/HeroTxt';
 import Genre from '../inputs/Genre';
 import OpenQuestion from '../inputs/OpenQuestion';
 import Date from '../inputs/Date';
 import Button from '../buttons/Button';
+import LoadingPage from './LoadingPage';
 import Radio from '../inputs/Radio';
 
 interface InputProps {
@@ -12,7 +13,8 @@ interface InputProps {
 }
 
 function InputPage({ onNext }: InputProps) {
-	const { userName } = useContext(UserContext);
+  const { userName } = useContext(UserContext);
+  const [ loading, setLoading ] = useState(false);
 
 	const [userResponse, setUserResponse] = React.useState({
 		date: '',
@@ -31,7 +33,7 @@ function InputPage({ onNext }: InputProps) {
 			) {
 				try {
 					const response = await fetch(
-						`http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(
+						`http://18.133.237.127:3000/api/run/?musicGenre=${encodeURIComponent(
 							userResponse.genre
 						)}&eventDescription=${encodeURIComponent(
 							userResponse.feel
@@ -48,16 +50,19 @@ function InputPage({ onNext }: InputProps) {
 						}
 					);
 
-					// Call onNext after initiating the API call
-					onNext();
+					// // Call onNext after initiating the API call
+					// onNext();
 
 					if (!response.ok) {
+            setLoading(false);
 						throw new Error('Network response was not ok');
 					}
 
 					const data = await response.json();
+          setLoading(false);
 					console.log(data);
 				} catch (error) {
+          setLoading(false);
 					console.error('Error calling API:', error);
 				}
 			}
@@ -66,16 +71,23 @@ function InputPage({ onNext }: InputProps) {
 		callAPI();
 	}, [userResponse, onNext]);
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		setUserResponse({
-			date: event.currentTarget.date.value,
-			feel: event.currentTarget.feel.value,
-			genre: event.currentTarget.genre.value,
-			quant: userResponse.quant,
-		});
-		// onNext();
-	};
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Trigger loading page
+    setLoading(true);
+
+    setUserResponse({
+      date: event.currentTarget.date.value,
+      feel: event.currentTarget.feel.value,
+      genre: event.currentTarget.genre.value,
+      quant: userResponse.quant,
+    });
+  }
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
 	return (
 		<div className='bg-[var(--pink)] min-h-screen flex flex-col'>
