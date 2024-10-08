@@ -8,25 +8,38 @@ import Button from '../buttons/Button';
 import Footer from '../sections/Footer';
 
 interface InputProps {
-  onNext: () => void;
+	onNext: () => void;
 }
 
 function InputPage({ onNext }: InputProps) {
-  const { userName } = useContext(UserContext);
+	const { userName } = useContext(UserContext);
 
-  const [userResponse, setUserResponse] = React.useState({
-    date: "",
-    feel: "",
-    genre: "",
-    quant: NaN
-  });
+	const [userResponse, setUserResponse] = React.useState({
+		date: '',
+		feel: '',
+		genre: '',
+		quant: NaN,
+	});
 
 	useEffect(() => {
 		const callAPI = async () => {
-			if (userResponse.date && userResponse.feel && userResponse.genre && !isNaN(userResponse.quant)) {
+			if (
+				userResponse.date &&
+				userResponse.feel &&
+				userResponse.genre &&
+				!isNaN(userResponse.quant)
+			) {
 				try {
 					const response = await fetch(
-						`http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(userResponse.genre)}&eventDescription=${encodeURIComponent(userResponse.feel)}&date=${encodeURIComponent(userResponse.date)}T00:00:00.000Z&playlistCount=${encodeURIComponent(userResponse.quant)}`,
+						`http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(
+							userResponse.genre
+						)}&eventDescription=${encodeURIComponent(
+							userResponse.feel
+						)}&date=${encodeURIComponent(
+							userResponse.date
+						)}T00:00:00.000Z&playlistCount=${encodeURIComponent(
+							userResponse.quant
+						)}`,
 						{
 							method: 'GET',
 							headers: {
@@ -53,51 +66,61 @@ function InputPage({ onNext }: InputProps) {
 		callAPI();
 	}, [userResponse, onNext]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setUserResponse({
-      date: event.currentTarget.date.value,
-      feel: event.currentTarget.feel.value,
-      genre: event.currentTarget.genre.value,
-      quant: 6,
-    });
-    // onNext();
-  }
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setUserResponse({
+			date: event.currentTarget.date.value,
+			feel: event.currentTarget.feel.value,
+			genre: event.currentTarget.genre.value,
+			quant: 6,
+		});
+		// onNext();
+	};
 
-  return (
-    <div className="bg-[var(--pink)] min-h-screen flex flex-col">
-      <main className="flex-grow p-4 md:p-6 flex flex-col items-center justify-center">
-        <div className="w-full max-w-md space-y-6">
-          <HeroTxt
-            userName={userName}
-            primaryText={'UNLEASH THE POWER OF YOUR EMOTIONS'}
-          />
+	return (
+		<div className='bg-[var(--pink)] min-h-screen flex flex-col'>
+			<main className='flex-grow p-4 md:p-6 flex flex-col items-center justify-center'>
+				<div className='w-full max-w-md space-y-6'>
+					<HeroTxt
+						userName={userName}
+						primaryText={'UNLEASH THE POWER OF YOUR EMOTIONS'}
+					/>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <Date />
-            <OpenQuestion />
-            <Genre />
-            
-            <div className="flex justify-center space-x-4">
-              {[5, 10, 15].map(num => (
-                <button
-                  key={num}
-                  type="button"
-                  onClick={() => setUserResponse(prev => ({ ...prev, quant: num }))}
-                  className={`w-12 h-12 rounded-full ${userResponse.quant === num ? 'bg-purple-600' : 'bg-purple-400'} text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2`}
-                >
-                  {num}
-                </button>
-              ))}
-            </div>
+					<form onSubmit={handleSubmit} className='space-y-6'>
+						<Date />
+						<OpenQuestion />
+						<Genre />
 
-            <Button onClick={handleSubmit} label='Create playlist' className="w-full" />
-          </form>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+						<div className='flex justify-center space-x-4'>
+							{[5, 10, 15].map((num) => (
+								<button
+									key={num}
+									type='button'
+									onClick={() =>
+										setUserResponse((prev) => ({ ...prev, quant: num }))
+									}
+									className={`w-12 h-12 rounded-full ${
+										userResponse.quant === num
+											? 'bg-purple-600'
+											: 'bg-purple-400'
+									} text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2`}
+								>
+									{num}
+								</button>
+							))}
+						</div>
+
+						<Button
+							onClick={handleSubmit}
+							label='Create playlist'
+							className='w-full'
+						/>
+					</form>
+				</div>
+			</main>
+			<Footer />
+		</div>
+	);
 }
 
 export default InputPage;

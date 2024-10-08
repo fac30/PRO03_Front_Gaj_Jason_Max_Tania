@@ -4,12 +4,7 @@ import Label from './Label';
 export default function OpenQuestion() {
 	return (
 		<div className='w-full'>
-			
-			<Label
-				htmlFor='inputFeel'
-				children='How did you feel on that date?'
-				className='flex flex-col space-y-2 text-lg font-medium text-gray-700'
-			/>
+			<Label htmlFor='inputFeel' text='How did you feel on that date?' />
 			<textarea
 				id='feel'
 				name='feel'

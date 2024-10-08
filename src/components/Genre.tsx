@@ -13,12 +13,8 @@ export default function Genre() {
 
 	return (
 		<div className='w-full'>
-			<Label
-				htmlFor='genre'
-				className='block text-sm font-medium text-gray-700 mb-1'
-			>
-				Select Genre:
-			</Label>
+			<Label htmlFor='genre' text='Select Genre:' />
+
 			<select
 				name='genre'
 				id='genre'

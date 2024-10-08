@@ -1,16 +1,9 @@
-import React from 'react';
 import Label from './Label';
-import { LabelProps } from '../utils/typeBucket';
 
 export default function Date() {
 	return (
 		<div className='w-full'>
-			<label
-				htmlFor='date'
-				className='block text-sm font-medium text-gray-700 mb-1'
-			>
-				Date
-			</label>
+			<Label htmlFor='date' text='Select Date:' />
 			<input
 				type='date'
 				id='date'

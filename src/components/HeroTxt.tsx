@@ -1,7 +1,7 @@
 // import React from 'react';
-import { userName  } from '../utils/typeBucket';
+import { userName } from '../Utils/typeBucket';
 
-export default function HeroTxt({ primaryText, userName }:  userName) {
+export default function HeroTxt({ primaryText, userName }: userName) {
 	return (
 		<p>
 			{primaryText} {userName}
