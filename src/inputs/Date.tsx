@@ -1,23 +1,16 @@
-import React from 'react'
 import Label from '../text/Label';
-import { LabelProps } from '../utils/typeBucket';
-
-
- 
 
 export default function Date() {
-  return (
-    <div className="flex flex-col "> {/* Flex column to stack label and input, with spacing */}
-      <Label htmlFor="date" children="Date" className="text-lg font-medium text-gray-700" />
-      <input 
-        type="text" 
-        id="date" 
-        name="date" 
-        placeholder="Select date" 
-        className="    w-1/4 mx-auto p-4 border border-gray-300 rounded-md bg-white text-black placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
-    </div>
-  )
+	return (
+		 
+			<div className='w-full'>
+				<Label htmlFor='date' text='Select Date:' />
+				<input
+					type='date'
+					id='date'
+					name='date'
+					className='mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900'
+				/>
+			</div>
+		);
 }
-
-
