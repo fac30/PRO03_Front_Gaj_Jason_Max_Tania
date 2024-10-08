@@ -23,13 +23,13 @@ function PlaylistPage({ onNext }: PlaylistProps) {
       </div>
       <div className="flex justify-center space-x-4 mt-4">
       <Button
-        onClick={onNext}  // Correct invocation
+        //onClick={onNext}  // Correct invocation
         label="Save playlist"
         disabled={false}
         loading={false}
       />
       <Button
-        onClick={onNext}  // Correct invocation
+        //onClick={onNext}  // Correct invocation
         label="Try again"
         disabled={false}
         loading={false}
