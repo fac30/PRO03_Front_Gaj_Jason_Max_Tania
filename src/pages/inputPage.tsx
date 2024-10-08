@@ -6,6 +6,7 @@ import OpenQuestion from '../inputs/OpenQuestion';
 import Date from '../inputs/Date';
 import Button from '../buttons/Button';
 import LoadingPage from './LoadingPage';
+import Radio from '../inputs/Radio';
 
 interface InputProps {
 	onNext: () => void;
@@ -80,7 +81,7 @@ function InputPage({ onNext }: InputProps) {
       date: event.currentTarget.date.value,
       feel: event.currentTarget.feel.value,
       genre: event.currentTarget.genre.value,
-      quant: 6,
+      quant: userResponse.quant,
     });
   }
 
@@ -98,25 +99,18 @@ function InputPage({ onNext }: InputProps) {
 					/>
 
 					<form onSubmit={handleSubmit} className='space-y-6'>
-						<div className="flex flex-col items-center mt-4 space-y-6">
+						<div className='flex flex-col items-center mt-4 space-y-6'>
 							<Date />
 							<OpenQuestion />
 							<Genre />
-              {/* need to put the radios wihtin its own component*/}
-              <div className="flex justify-center space-x-4 my-4">
-                {[5, 10, 15].map(num => (
-                  <button
-                    key={num}
-                    type="button"
-                    onClick={() => setUserResponse(prev => ({ ...prev, quant: num }))}
-                    className="w-12 h-12 rounded-full bg-purple-400 text-white flex items-center justify-center"
-                  >
-                    {num}
-                  </button>
-                ))}
-              </div>
+							<Radio
+								selectedQuant={userResponse.quant}
+								setQuant={(num: number) =>
+									setUserResponse((prev) => ({ ...prev, quant: num }))
+								}
+							/>
 						</div>
-						<Button onClick={()=> handleSubmit} label='Create playlist' />
+						<Button onClick={() => handleSubmit} label='Create playlist' />
 					</form>
 				</div>
 			</main>
@@ -125,4 +119,3 @@ function InputPage({ onNext }: InputProps) {
 }
 
 export default InputPage;
- 
