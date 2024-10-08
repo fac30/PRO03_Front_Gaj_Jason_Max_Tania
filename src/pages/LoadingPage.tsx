@@ -17,7 +17,7 @@ const LoadingPage: React.FC = () => {
 	// }, []);
 
   return (
-    <div className='bg-[#94CD31] flex justify-center items-center w-full h-full'>
+    <div className='flex justify-center items-center w-full h-full'>
         <DotLottieReact
           src="/src/assets/anime_man.json"
           loop

@@ -27,7 +27,7 @@ function InputPage({ onNext }: InputProps) {
 			if (userResponse.date && userResponse.feel && userResponse.genre && !isNaN(userResponse.quant)) {
 				try {
 					const response = await fetch(
-						`http://localhost:3000/api/run/?musicGenre=${encodeURIComponent(userResponse.genre)}&eventDescription=${encodeURIComponent(userResponse.feel)}&date=${encodeURIComponent(userResponse.date)}T00:00:00.000Z&playlistCount=${encodeURIComponent(userResponse.quant)}`,
+						`http://18.133.237.127:3000/api/run/?musicGenre=${encodeURIComponent(userResponse.genre)}&eventDescription=${encodeURIComponent(userResponse.feel)}&date=${encodeURIComponent(userResponse.date)}T00:00:00.000Z&playlistCount=${encodeURIComponent(userResponse.quant)}`,
 						{
 							method: 'GET',
 							headers: {
