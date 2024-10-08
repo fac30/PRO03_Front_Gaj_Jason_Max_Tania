@@ -1,5 +1,5 @@
 // import React from 'react';
-import { userName } from '../Utils/typeBucket';
+import { userName } from '../utils/typeBucket';
 
 export default function HeroTxt({ primaryText, userName }: userName) {
 	return (

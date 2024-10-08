@@ -1,4 +1,4 @@
-import { LabelProps } from '../Utils/typeBucket';
+import { LabelProps } from '../utils/typeBucket';
 
 /**
  * Label component renders a label element associated with a form control.
