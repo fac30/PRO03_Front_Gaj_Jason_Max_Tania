@@ -15,7 +15,7 @@ const DevTools: React.FC<DevToolsProps> = ({ setCurrentPage }) => {
           onClick={() => setCurrentPage(page)}
           style={{ marginRight: '5px' }}
         >
-          {page}
+					{page}
         </button>
       ))}
     </div>

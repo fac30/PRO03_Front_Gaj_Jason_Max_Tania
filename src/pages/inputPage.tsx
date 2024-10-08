@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../sections/Content';
-import HeroTxt from '../components/HeroTxt';
+import HeroTxt from '../text/HeroTxt';
 import Genre from '../components/Genre';
 import OpenQuestion from '../components/OpenQuestion';
-import Date from '../components/Date';
+import Date from '../inputs/Date';
 import Button from '../buttons/Button';
 import Footer from '../sections/Footer';
 
