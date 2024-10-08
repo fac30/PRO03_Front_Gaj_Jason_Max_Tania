@@ -87,16 +87,18 @@ function InputPage({ onNext }: InputProps) {
 					/>
 
 					<form onSubmit={handleSubmit} className='space-y-6'>
-						<div className="flex flex-col items-center mt-4 space-y-6">
+						<div className='flex flex-col items-center mt-4 space-y-6'>
 							<Date />
 							<OpenQuestion />
 							<Genre />
-							<Radio 
-								selectedQuant={userResponse.quant} 
-								setQuant={(num) => setUserResponse(prev => ({ ...prev, quant: num }))} 
+							<Radio
+								selectedQuant={userResponse.quant}
+								setQuant={(num: number) =>
+									setUserResponse((prev) => ({ ...prev, quant: num }))
+								}
 							/>
 						</div>
-						<Button onClick={()=> handleSubmit} label='Create playlist' />
+						<Button onClick={() => handleSubmit} label='Create playlist' />
 					</form>
 				</div>
 			</main>
@@ -105,4 +107,3 @@ function InputPage({ onNext }: InputProps) {
 }
 
 export default InputPage;
- 
