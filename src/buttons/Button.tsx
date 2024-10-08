@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 interface ButtonProps {
+  onClick: () => void;
   label: string;
   disabled?: boolean;
   loading?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, disabled = false, loading = false }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, label, disabled = false, loading = false }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -15,6 +16,7 @@ const Button: React.FC<ButtonProps> = ({ label, disabled = false, loading = fals
       disabled={disabled || loading}
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
+      onClick={onClick}
       className={`m-2 text-lg px-6 py-3 rounded-full transition duration-300 ease-in-out
         ${disabled ? 'bg-[var(--button-disabled)] text-gray-500 cursor-not-allowed' : ''}
         ${loading ? 'bg-[var(--button-loading)] text-black cursor-wait' : ''}

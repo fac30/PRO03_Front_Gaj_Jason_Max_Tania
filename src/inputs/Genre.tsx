@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Label from './Label';
-import genresData from './genres.json';
+import Label from '../text/Label';
+import genresData from '../utils/genres.json';
 
 export default function Genre() {
    // Static array of genres
