@@ -7,15 +7,15 @@ const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-      <header className="bg-[#929cf8] text-black p-4 w-full"> 
+      <header className="bg-[#929cf8] text-[#383050] p-4 w-full"> 
        <div className="flex justify-between items-center w-full">
           
           {/* Left side: Logo and Brand Name */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 cursor-pointer">
             <img
               src={logo}
               alt="Brand Logo"
-              className="h-16 w-16 rounded-full"
+              className="h-16 w-16 rounded-full spin-animation"
             />
             <span className="text-xl font-bold">MoodTime</span>
           </div>

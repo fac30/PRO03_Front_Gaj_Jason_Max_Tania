@@ -13,10 +13,15 @@ function LandingPage({ onNext, setUserName }: LandingProps) {
 	};
 
 	return (
-		<div className="flex-grow flex-col flex justify-center items-center min-h-0">
-			<LandingText />
-			<NameForm onSubmit={handleSubmit} />
-		</div>
+		<div className="bg-[url('/src/assets/web_landing_page.svg')] bg-cover bg-center min-h-screen flex flex-col justify-between items-center">
+			<div className="flex flex-col items-center justify-center flex-grow">
+			    <LandingText />
+			</div>
+    
+			<div className="flex flex-col items-center justify-center flex-grow mb-8">
+				<NameForm onSubmit={handleSubmit} /> 
+			</div>
+  		</div>
 	)
 }
 
