@@ -35,7 +35,7 @@ function NameForm({ onSubmit }: NameFormProps) {
 	};
 	
 	return (
-		<form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4 w-full max-w-md">
+		<form onSubmit={handleSubmit} className="flex flex-col items-center max-lg:space-y-2 space-y-4 w-full max-w-md">
 			<div className="w-full">
 				<NameInput 
 					value={name} 
