@@ -18,8 +18,26 @@ describe('Front-end Tests', () => {
 					cy.get('.error')
 						.should('contain', 'Please enter your name');
 				})
-				// it('App does not advance with an offensive name', () => {})
-				// it('App does not advance with an unsafe name', () => {})
+				it('App does not advance with an offensive name', () => {
+					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
+						.type('Fuck Nugget');
+					cy.get('button[type="submit"]')
+						.click();
+					cy.url()
+						.should('eq', 'http://localhost:5173/');
+					cy.get('.error')
+						.should('contain', 'Please enter a respectful name');
+				})
+				it('App does not advance with an unsafe name', () => {
+					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
+						.type('<script>alert("XSS")</script>');
+					cy.get('button[type="submit"]')
+						.click();
+					cy.url()
+						.should('eq', 'http://localhost:5173/');
+					cy.get('.error')
+						.should('contain', 'Please enter a valid name');
+				})
 			})
 
 			// context ('Success States', () => {
