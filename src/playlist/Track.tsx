@@ -12,9 +12,8 @@ function Track({ id, title, album, releaseDate, duration }: TrackProps) {
     <>
     <div key={id} className="p-0 m-2">
         <iframe
-        className="h-20 border-none rounded-2xl shadow-lg shadow-[var(--purple)]"
+        className="track h-20 border-none rounded-2xl shadow-lg shadow-[var(--purple)]"
         src={`https://open.spotify.com/embed/track/${id}`}
-        width="250"
         allow="encrypted-media"
         title={title}
         ></iframe>

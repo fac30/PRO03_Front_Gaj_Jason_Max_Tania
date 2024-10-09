@@ -13,7 +13,7 @@ function LandingPage({ onNext, setUserName }: LandingProps) {
 	};
 
 	return (
-		<div className="bg-[url('/src/assets/web_landing_page.svg')] bg-cover bg-center min-h-screen flex flex-col justify-between items-center">
+		<div className="bg-[url('/src/assets/landing_bg_img.svg')] bg-cover bg-center min-h-screen flex flex-col justify-between items-center">
 			<div className="flex flex-col items-center justify-center flex-grow">
 			    <LandingText />
 			</div>

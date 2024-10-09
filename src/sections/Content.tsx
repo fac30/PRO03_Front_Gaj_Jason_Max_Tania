@@ -42,10 +42,8 @@ function Content() {
 	return (
 		<div className="w-full h-full flex flex-col">
 			<UserContext.Provider value={userContextValue}>
-			  <main>
 				{renderPage()}
 				<DevTools setCurrentPage={setCurrentPage} />
-			  </main>
 		    </UserContext.Provider>
 		</div>		
 	)

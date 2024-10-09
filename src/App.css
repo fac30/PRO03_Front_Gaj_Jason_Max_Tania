@@ -42,3 +42,15 @@ html, body {
 .read-the-docs {
   color: #888;
 }
+
+@media (max-width: 900px) {
+  iframe.track {
+    width: 200px; /* Change the width when screen is less than 900px */
+  }
+}
+
+@media (min-width: 900px) {
+  iframe.track {
+    width: 400px; /* Change the width when screen is larger than 900px */
+  }
+}
