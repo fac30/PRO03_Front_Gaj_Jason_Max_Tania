@@ -5,9 +5,11 @@ import Footer from './sections/Footer';
 
 function App() {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col min-h-screen w-full h-full">
 			<Header />
-			<Content />
+			<main className="flex-grow w-full h-full">
+			    <Content />
+			</main>
 			<Footer />
 		</div>
 	);

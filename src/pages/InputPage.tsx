@@ -54,15 +54,15 @@ function InputPage({ onNext }: InputProps) {
 					// onNext();
 
 					if (!response.ok) {
-            setLoading(false);
+                        setLoading(false);
 						throw new Error('Network response was not ok');
 					}
 
 					const data = await response.json();
-          setLoading(false);
+                    setLoading(false);
 					console.log(data);
 				} catch (error) {
-          setLoading(false);
+                    setLoading(false);
 					console.error('Error calling API:', error);
 				}
 			}
@@ -89,10 +89,9 @@ function InputPage({ onNext }: InputProps) {
     return <LoadingPage />;
   }
 
-	return (
-		<div className='bg-[var(--pink)] min-h-screen flex flex-col'>
-			<main className='flex-grow p-4 md:p-6 flex flex-col items-center justify-center'>
-				<div className='w-full max-w-md space-y-6'>
+  return (
+	    <div className="bg-[var(--pink)] flex-grow flex flex-col p-4 md:p-6 items-center justify-center">
+                <div className="w-full max-w-md space-y-6">
 					<HeroTxt
 						userName={userName}
 						primaryText={'UNLEASH THE POWER OF YOUR EMOTIONS'}
@@ -113,7 +112,6 @@ function InputPage({ onNext }: InputProps) {
 						<Button onClick={() => handleSubmit} label='Create playlist' />
 					</form>
 				</div>
-			</main>
 		</div>
 	);
 }
