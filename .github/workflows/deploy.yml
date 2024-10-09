@@ -40,4 +40,4 @@ jobs:
           args: --acl public-read --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          SOURCE_DIR: 'dist' # Vite's output directory
+          SOURCE_DIR: 'dist' 
