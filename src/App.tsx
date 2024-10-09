@@ -4,6 +4,7 @@ import Content from './sections/Content';
 import Footer from './sections/Footer';
 
 function App() {
+
 	return (
 		<div className="flex flex-col min-h-screen w-full h-full">
 			<Header />

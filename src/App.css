@@ -18,14 +18,7 @@ html, body {
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -34,10 +27,12 @@ html, body {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.spin-animation {
+  transition: transform 0.5s ease-in-out;
+}
+
+.spin-animation:hover {
+  animation: spin 0.5s linear infinite;
 }
 
 .card {

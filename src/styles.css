@@ -2,6 +2,8 @@
 
 /* Colours for the app: */
 :root {
+    /*text colour*/
+    --text: #383050;
     /* interface main colours */
     --green: #0ca444;
     --pink: #faa4f6;
