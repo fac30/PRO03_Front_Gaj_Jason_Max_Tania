@@ -32,8 +32,6 @@ function Content() {
 				return <LandingPage onNext={() => setCurrentPage('input')} setUserName={setUserName} />;
 			case 'input':
 				return <InputPage onNext={() => setCurrentPage('loading')} />;
-			//case 'loading':
-				//return <LoadingPage onNext={() => setCurrentPage('playlist')} />;
 			case 'playlist':
 				return <PlaylistPage onNext={() => setCurrentPage('landing')} />;
 			default:
@@ -42,12 +40,10 @@ function Content() {
 	};
 
 	return (
-		<div className="flex-grow">
+		<div className="w-full h-full flex flex-col">
 			<UserContext.Provider value={userContextValue}>
-			  <main>
 				{renderPage()}
 				<DevTools setCurrentPage={setCurrentPage} />
-			  </main>
 		    </UserContext.Provider>
 		</div>		
 	)

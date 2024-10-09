@@ -13,16 +13,16 @@ export default function Genre() {
 
   return (
     <div className='m-4 flex-auto space-x-2'>
-      <Label htmlFor="musicGenre" text="Select a music genre:" />
+      <Label htmlFor="genre" text="Select Genre:" />
        
       <select
-        name="musicGenre"
-        id="musicGenre"
+        name="genre"
+        id="genre"
         value={selectedGenre}
         onChange={handleGenreChange}
         className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900"
       >
-        <option value="">Select a music genre</option>
+        <option value="">Select Genre</option>
         {genresData.categories.map((genre: string, index: number) => (
           <option key={index} value={genre}>
             {genre}

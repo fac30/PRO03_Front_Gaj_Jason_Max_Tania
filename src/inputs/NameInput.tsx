@@ -10,6 +10,7 @@ function NameInput({ value, onChange }: NameInputProps) {
 			placeholder="What's Your Name?"
 			value={value}
 			onChange={(e) => onChange(e.target.value)}
+			className="w-full px-4 py-3 border border-[var(--yellow)] rounded-full bg-white text-[var(--text)] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--button-default)]"
 		/>
 	)
 }

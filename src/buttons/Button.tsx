@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, label, disabled = false, loadi
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
       onClick={onClick}
-      className={`m-2 text-lg px-6 py-3 rounded-full transition duration-300 ease-in-out
+      className={`text-lg px-6 py-3 rounded-full transition duration-300 ease-in-out
         ${disabled ? 'bg-[var(--button-disabled)] text-gray-500 cursor-not-allowed' : ''}
         ${loading ? 'bg-[var(--button-loading)] text-black cursor-wait' : ''}
         ${!disabled && !loading && !isActive ? 'bg-[var(--button-default)] text-white hover:bg-[var(--button-hover)]' : ''}
