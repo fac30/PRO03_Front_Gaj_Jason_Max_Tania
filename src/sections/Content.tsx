@@ -4,24 +4,32 @@ import LandingPage from '../pages/LandingPage';
 import InputPage from '../pages/InputPage';
 import PlaylistPage from '../pages/PlaylistPage';
 import DummyPage from '../pages/DummyPage';
+import { TracklistProps } from '../utils/playlistTypes';
 
 interface UserContextType {
-	userName: string;
-	setUserName: (name: string) => void;
+	userName: string,
+	setUserName: (name: string) => void,
+	playlistJson: Promise<TracklistProps>,
+	setPlaylistJson: (json: Promise<TracklistProps>) => void,
 }
 
 export const UserContext = createContext<UserContextType>({
 	userName: "",
 	setUserName: () => {},
+	playlistJson: new Promise((resolve) => resolve([])),
+	setPlaylistJson: () => {},
 });
 
 function Content() {
 	const [currentPage, setCurrentPage] = useState('landing');
 	const [userName, setUserName] = useState("");
+	const [playlistJson, setPlaylistJson] = useState<Promise<TracklistProps>>(new Promise((resolve) => resolve([])));
 
 	const userContextValue = {
 		userName,
 		setUserName,
+		playlistJson,
+		setPlaylistJson,
 	};
 
 	const renderPage = () => {
@@ -31,9 +39,7 @@ function Content() {
 			case 'landing':
 				return <LandingPage onNext={() => setCurrentPage('input')} setUserName={setUserName} />;
 			case 'input':
-				return <InputPage onNext={() => setCurrentPage('loading')} />;
-			//case 'loading':
-				//return <LoadingPage onNext={() => setCurrentPage('playlist')} />;
+				return <InputPage setPlaylistJson={setPlaylistJson} />;
 			case 'playlist':
 				return <PlaylistPage onNext={() => setCurrentPage('landing')} />;
 			default:
