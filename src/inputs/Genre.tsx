@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Label from '../text/Label';
-import genresData from '../utils/genres.json';
+import genresData from '../data/genres.json';
 
 export default function Genre() {
    // Static array of genres
@@ -13,18 +13,17 @@ export default function Genre() {
 
   return (
     <div className='m-4 flex-auto space-x-2'>
-      <Label htmlFor="genre" className="flex flex-col space-y-2 text-lg font-medium text-gray-700">
-        Select Genre:
-      </Label>
+      <Label htmlFor="genre" text="Select Genre:" />
+       
       <select
         name="genre"
         id="genre"
         value={selectedGenre}
         onChange={handleGenreChange}
-        className="w-1/4 mx-auto p-4 border border-gray-300 rounded-md bg-white text-black placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900"
       >
-        <option value="">--Please choose an option--</option>
-        {genresData.categories.map((genre, index) => (
+        <option value="">Select Genre</option>
+        {genresData.categories.map((genre: string, index: number) => (
           <option key={index} value={genre}>
             {genre}
           </option>

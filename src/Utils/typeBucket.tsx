@@ -2,7 +2,7 @@ export type buttonProps = {
 	btnText: string;
 	btnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 	btnClassName: string;
-	type?: "button" | "submit" | "reset";
+	type?: 'button' | 'submit' | 'reset';
 };
 
 export type userName = {
@@ -10,8 +10,8 @@ export type userName = {
 	userName: string;
 };
 
-export interface LabelProps {
+export type LabelProps = {
 	htmlFor: string;
-        children: React.ReactNode;
-        className: string;
-}
+	text: string;
+	className?: string;
+};

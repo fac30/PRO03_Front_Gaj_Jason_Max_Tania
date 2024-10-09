@@ -13,10 +13,10 @@ function LandingPage({ onNext, setUserName }: LandingProps) {
 	};
 
 	return (
-		<>
+		<div className="flex-grow flex-col flex justify-center items-center min-h-0">
 			<LandingText />
 			<NameForm onSubmit={handleSubmit} />
-		</>
+		</div>
 	)
 }
 
