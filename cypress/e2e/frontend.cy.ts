@@ -17,8 +17,8 @@ const app = {
 	},
 	input: {
 		date: 'input[type="date"]',
-		feel: 'textarea[name="feel"]',
-		genre: 'select[id="genre"]',
+		feel: 'textarea[name="eventDescription"]',
+		genre: 'select[id="musicGenre"]',
 		name: 'input[type="text"][placeholder="What\'s Your Name?"]'
 	}, 
 	url: {

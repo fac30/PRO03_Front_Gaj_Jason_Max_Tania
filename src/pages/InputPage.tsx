@@ -36,13 +36,13 @@ function InputPage({ onNext }: InputProps) {
 		if (!formData.date) {
 			setError(warn);
 			return false;
-		} else if (!formData.genre) {
+		} else if (!formData.musicGenre) {
 			setError(warn);
 			return false;
-		} else if (!formData.feel.trim()) {
+		} else if (!formData.eventDescription.trim()) {
 			setError(warn);
 			return false;
-		} else if (formData.feel.includes('<')) {
+		} else if (formData.eventDescription.includes('<')) {
 			setError(scold);
 			return false;
 		} else {
