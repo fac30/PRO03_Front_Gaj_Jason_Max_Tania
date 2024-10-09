@@ -2,7 +2,6 @@ import { createContext, useState } from 'react';
 import DevTools from './DevTools';
 import LandingPage from '../pages/LandingPage';
 import InputPage from '../pages/InputPage';
-//import LoadingPage from '../pages/LoadingPage';
 import PlaylistPage from '../pages/PlaylistPage';
 import DummyPage from '../pages/DummyPage';
 
