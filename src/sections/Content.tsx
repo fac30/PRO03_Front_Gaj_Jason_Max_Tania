@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import DevTools from './DevTools';
 import LandingPage from '../pages/LandingPage';
-import InputPage from '../pages/InputPage';
+import InputPage from '../pages/inputPage';
 import PlaylistPage from '../pages/PlaylistPage';
 import DummyPage from '../pages/DummyPage';
 
