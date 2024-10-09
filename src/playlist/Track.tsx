@@ -1,4 +1,4 @@
-import {TrackProps} from '../utils/playlistTypes';
+import { TrackProps } from '../utils/playlistTypes';
 
 
 function Track({ id, title, album, releaseDate, duration }: TrackProps) {
@@ -19,7 +19,6 @@ function Track({ id, title, album, releaseDate, duration }: TrackProps) {
         title={title}
         ></iframe>
     </div>
-    {/* Show additional track details */}
     <div className="">
         <p className="font-thin text-xs m-0 text-black">{album} | {new Date(releaseDate).getFullYear()} | {formatDuration(duration)}</p>
     </div>
