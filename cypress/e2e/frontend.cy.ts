@@ -18,8 +18,8 @@ describe('Front-end Tests', () => {
 	})
 
 	context ('API Call', () => {
-		it('App advances to Playlist Page with a valid API response', () => {})
 		it('Making the API call triggers the loading animation', () => {})
+		it('App advances to Playlist Page with a valid API response', () => {})
 	})
 
 	context ('Playlist Page', () => {
