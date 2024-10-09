@@ -11,7 +11,10 @@ const app = {
 	button: {
 		submit: 'button[type="submit"]'
 	},
-	error: 'Please complete the form',
+	error: {
+		warn: 'Please complete the form',
+		scold: 'Don\'t be a tit'
+	},
 	input: {
 		date: 'input[type="date"]',
 		feel: 'textarea[name="feel"]',
@@ -34,7 +37,7 @@ describe('Front-end Tests', () => {
 					cy.get(app.button.submit)
 						.click();
 					cy.get('.error')
-						.should('contain', app.error);
+						.should('contain', app.error.warn);
 				})
 				it('Rudey', () => {
 					cy.get(app.input.name)
@@ -44,7 +47,7 @@ describe('Front-end Tests', () => {
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
 					cy.get('.error')
-						.should('contain', app.error);
+						.should('contain', app.error.scold);
 				})
 				it('Hacky', () => {
 					cy.get(app.input.name)
@@ -54,7 +57,7 @@ describe('Front-end Tests', () => {
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
 					cy.get('.error')
-						.should('contain', app.error);
+						.should('contain', app.error.scold);
 				})
 			})
 
@@ -92,7 +95,7 @@ describe('Front-end Tests', () => {
 					cy.get( app.button.submit )
 						.click();
 					cy.get('.error')
-						.should('contain', app.error);
+						.should('contain', app.error.warn);
 					cy.get( app.input.date )
 						.should('exist');
 				});
@@ -105,7 +108,7 @@ describe('Front-end Tests', () => {
 					cy.get(app.button.submit)
 						.click();
 					cy.get('.error')
-						.should('contain', app.error);
+						.should('contain', app.error.warn);
 					cy.get(app.input.genre)
 						.should('exist');
 				});
@@ -118,7 +121,7 @@ describe('Front-end Tests', () => {
 					cy.get( app.button.submit )
 						.click();
 					cy.get('.error')
-						.should('contain', app.error);
+						.should('contain', app.error.warn);
 					cy.get( app.input.feel )
 						.should('exist');
 				});
