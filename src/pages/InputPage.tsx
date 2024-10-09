@@ -48,9 +48,8 @@ function InputPage({ onNext }: InputProps) {
   }
 
 	return (
-		<div className='bg-[var(--pink)] min-h-screen flex flex-col'>
-			<main className='flex-grow p-4 md:p-6 flex flex-col items-center justify-center'>
-				<div className='w-full max-w-md space-y-6'>
+		<div className="bg-gradient-to-r from-[var(--yellow)] to-[var(--pink)] flex-grow flex flex-col p-4 md:p-6 items-center justify-center">
+                <div className="w-full max-w-md space-y-6">
 					<HeroTxt
 						userName={userName}
 						primaryText={'UNLEASH THE POWER OF YOUR EMOTIONS'}
@@ -71,7 +70,6 @@ function InputPage({ onNext }: InputProps) {
 						<Button onClick={() => handleSubmit} label='Create playlist' />
 					</form>
 				</div>
-			</main>
 		</div>
 	);
 }
