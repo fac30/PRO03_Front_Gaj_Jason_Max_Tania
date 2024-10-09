@@ -7,6 +7,7 @@ import Date from '../inputs/Date';
 import Button from '../buttons/Button';
 import LoadingPage from './LoadingPage';
 import Radio from '../inputs/Radio';
+import { fetchPlaylist } from '../utils/fetchPlaylist'
 
 interface InputProps {
 	onNext: () => void;
@@ -18,57 +19,14 @@ function InputPage({ onNext }: InputProps) {
 
 	const [userResponse, setUserResponse] = React.useState({
 		date: '',
-		feel: '',
-		genre: '',
-		quant: NaN,
+		eventDescription: '',
+		musicGenre: '',
+		playlistCount: NaN,
 	});
 
 	useEffect(() => {
-		const callAPI = async () => {
-			if (
-				userResponse.date &&
-				userResponse.feel &&
-				userResponse.genre &&
-				!isNaN(userResponse.quant)
-			) {
-				try {
-					const response = await fetch(
-						`http://18.133.237.127:3000/api/run/?musicGenre=${encodeURIComponent(
-							userResponse.genre
-						)}&eventDescription=${encodeURIComponent(
-							userResponse.feel
-						)}&date=${encodeURIComponent(
-							userResponse.date
-						)}T00:00:00.000Z&playlistCount=${encodeURIComponent(
-							userResponse.quant
-						)}`,
-						{
-							method: 'GET',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-						}
-					);
 
-					// // Call onNext after initiating the API call
-					// onNext();
-
-					if (!response.ok) {
-            setLoading(false);
-						throw new Error('Network response was not ok');
-					}
-
-					const data = await response.json();
-          setLoading(false);
-					console.log(data);
-				} catch (error) {
-          setLoading(false);
-					console.error('Error calling API:', error);
-				}
-			}
-		};
-
-		callAPI();
+		fetchPlaylist(userResponse);
 	}, [userResponse, onNext]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -79,9 +37,9 @@ function InputPage({ onNext }: InputProps) {
 
     setUserResponse({
       date: event.currentTarget.date.value,
-      feel: event.currentTarget.feel.value,
-      genre: event.currentTarget.genre.value,
-      quant: userResponse.quant,
+      eventDescription: event.currentTarget.eventDescription.value,
+      musicGenre: event.currentTarget.musicGenre.value,
+      playlistCount: userResponse.playlistCount,
     });
   }
 
@@ -104,9 +62,9 @@ function InputPage({ onNext }: InputProps) {
 							<OpenQuestion />
 							<Genre />
 							<Radio
-								selectedQuant={userResponse.quant}
+								selectedQuant={userResponse.playlistCount}
 								setQuant={(num: number) =>
-									setUserResponse((prev) => ({ ...prev, quant: num }))
+									setUserResponse((prev) => ({ ...prev, playlistCount: num }))
 								}
 							/>
 						</div>
