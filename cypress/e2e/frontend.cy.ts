@@ -1,53 +1,70 @@
 /// <reference types="cypress" />
 
+const user = {
+	ghosty: "",
+	rude: "Fuck Nugget",
+	hacky: "<script>alert('XSS')</script>",
+	valid: 'Rupert the Wonder Pig'
+};
+
+const app = {
+	button: {
+		submit: 'button[type="submit"]'
+	},
+	error: 'Please complete the form',
+	input: {
+		date: 'input[type="date"]',
+		feel: 'textarea[name="feel"]',
+		genre: 'select[id="genre"]',
+		name: 'input[type="text"][placeholder="What\'s Your Name?"]'
+	}, 
+	url: {
+		local: 'http://localhost:5173'
+	}
+};
+
 describe('Front-end Tests', () => {
-  beforeEach(() => { 
-		cy.visit('http://localhost:5173')
-	})
+  beforeEach(() => { cy.visit(app.url.local) })
 
 	context ('Landing Page', () => {
-		context ('Name Input', () => {
-			context ('Failure States', () => {
-				it('App does not advance with an empty name', () => {
-					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
-						.should('exist');
-					cy.get('button[type="submit"]')
+		context ('Guestlist', () => {
+			context ('Not on the List', () => {
+				it('Ghosty', () => {
+					cy.get(app.input.name);
+					cy.get(app.button.submit)
 						.click();
-					cy.url()
-						.should('eq', 'http://localhost:5173/');
 					cy.get('.error')
-						.should('contain', 'Please enter your name');
+						.should('contain', app.error);
 				})
-				it('App does not advance with an offensive name', () => {
-					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
-						.type('Fuck Nugget');
-					cy.get('button[type="submit"]')
+				it('Rudey', () => {
+					cy.get(app.input.name)
+						.type(user.rude);
+					cy.get(app.button.submit)
 						.click();
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
 					cy.get('.error')
-						.should('contain', 'Please enter a respectful name');
+						.should('contain', app.error);
 				})
-				it('App does not advance with an unsafe name', () => {
-					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
-						.type('<script>alert("XSS")</script>');
-					cy.get('button[type="submit"]')
+				it('Hacky', () => {
+					cy.get(app.input.name)
+						.type(user.hacky);
+					cy.get(app.button.submit)
 						.click();
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
 					cy.get('.error')
-						.should('contain', 'Please stop your hackings');
+						.should('contain', app.error);
 				})
 			})
 
-			context ('Success States', () => {
-				it('App advances to Input Page with a valid name', () => {
-					const validName = 'Rupert the Wonder Pig';
-					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
-						.type(validName);
-					cy.get('button[type="submit"]')
+			context ('On the List', () => {
+				it('Pig', () => {
+					cy.get(app.input.name)
+						.type(user.valid);
+					cy.get(app.button.submit)
 						.click();
-					cy.contains(validName)
+					cy.contains(user.valid)
 						.should('be.visible');
 					cy.get('input[type="date"]')
 						.should('exist');
@@ -57,29 +74,97 @@ describe('Front-end Tests', () => {
 	})
 
 	context ('Input Page', () => {
-		// context ('Form Submission', () => {
-		// 	context ('Failure States', () => {
-		// 		it('App does not advance with an empty date', () => {})
-		// 		it('App does not advance with an empty genre', () => {})
-		// 		it('App does not advance with an empty mood', () => {})
-		// 	})
-			// context ('Success States', () => {
-			// it('App makes API Call with a valid date, genre, and mood', () => {})
-			// })
-		// })
+		beforeEach(() => {
+			cy.get( app.input.name ).type( user.valid );
+			cy.get( app.button.submit ).click();
+			cy.get( app.input.date ).should('exist');
+			cy.get( app.input.feel ).should('exist');
+			cy.get( app.input.genre ).should('exist');
+		});
+
+		context('Form Submission', () => {
+			context('Failure States', () => {
+				it('App does not advance with an empty date', () => {
+					cy.get( app.input.genre )
+						.select('rock');
+					cy.get( app.input.feel )
+						.type('Happy');
+					cy.get( app.button.submit )
+						.click();
+					cy.get('.error')
+						.should('contain', app.error);
+					cy.get( app.input.date )
+						.should('exist');
+				});
+
+				it('App does not advance with an empty genre', () => {
+					cy.get(app.input.date)
+					.type('2023-05-01');
+					cy.get(app.input.feel)
+						.type('Happy');
+					cy.get(app.button.submit)
+						.click();
+					cy.get('.error')
+						.should('contain', app.error);
+					cy.get(app.input.genre)
+						.should('exist');
+				});
+
+				it('App does not advance with an empty mood', () => {
+					cy.get( app.input.date )
+						.type('2023-05-01');
+					cy.get( app.input.genre )
+						.select('rock');
+					cy.get( app.button.submit )
+						.click();
+					cy.get('.error')
+						.should('contain', app.error);
+					cy.get( app.input.feel )
+						.should('exist');
+				});
+			});
+
+			context('Success States', () => {
+				it('App makes API Call with a valid date, genre, and mood', () => {
+					cy.get( app.input.date )
+						.type('2023-05-01');
+					cy.get( app.input.genre )
+						.select('rock');
+					cy.get( app.input.feel )
+						.type('Happy');
+					cy.intercept('GET', '/api/playlist')
+						.as('playlistRequest');
+					cy.get( app.button.submit )
+						.click();
+					
+					cy.wait('@playlistRequest')
+						.its('request.body')
+						.should('deep.equal', {
+							date: '2023-05-01',
+							genre: 'rock',
+							mood: 'Happy'
+						});
+					
+					cy.get('.playlist-container')
+						.should('exist');
+					cy.get('.track-list')
+						.should('exist');
+				});
+			});
+		});
 	})
 
-	context ('API Call', () => {
-		// it('Making the API call triggers the loading animation', () => {})
-		// it('App advances to Playlist Page with a valid API response', () => {})
-	})
+	// context ('API Call', () => {
+	// it('Making the API call triggers the loading animation', () => {})
+	// it('App advances to Playlist Page with a valid API response', () => {})
+	// })
 
-	context ('Playlist Page', () => {
-		// it('App displays the playlist title', () => {})
-		// it('App displays tracks appropriate to the date, genre, and mood', () => {})
-		// it('App displays a button to generate a new playlist', () => {})
-		// it('App advances to Input Page when the "New Playlist" button is clicked', () => {})
-		// it('App displays the correct number of tracks', () => {})
-		// it('Individual tracks are playable', () => {})
-	})
+	// context ('Playlist Page', () => {
+	// 	// it('App displays the playlist title', () => {})
+	// 	// it('App displays tracks appropriate to the date, genre, and mood', () => {})
+	// 	// it('App displays a button to generate a new playlist', () => {})
+	// 	// it('App advances to Input Page when the "New Playlist" button is clicked', () => {})
+	// 	// it('App displays the correct number of tracks', () => {})
+	// 	// it('Individual tracks are playable', () => {})
+	// })
 })
