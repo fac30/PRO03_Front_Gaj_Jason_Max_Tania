@@ -1,6 +1,6 @@
 // Tracklist.tsx
 import Track from './Track';
-import { TrackProps, TracklistProps } from '../utils/playlist';
+import { TrackProps, TracklistProps } from '../utils/playlistTypes';
 
 function Tracklist({ playlist }: { playlist: TracklistProps }) {  // Fix prop structure
   return (

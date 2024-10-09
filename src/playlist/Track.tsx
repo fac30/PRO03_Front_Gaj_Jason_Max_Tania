@@ -1,4 +1,4 @@
-import {TrackProps} from '../utils/playlist';
+import {TrackProps} from '../utils/playlistTypes';
 
 
 function Track({ id, title, album, releaseDate, duration }: TrackProps) {

@@ -4,7 +4,7 @@ import Button from '../buttons/Button';
 import { UserContext } from '../sections/Content';
 import playlist from '../data/playlist.json';
 import Tracklist from '../playlist/Tracklist';
-import { TracklistProps } from '../utils/playlist';
+import { TracklistProps } from '../utils/playlistTypes';
 
 interface PlaylistProps {
   onNext: () => void;
