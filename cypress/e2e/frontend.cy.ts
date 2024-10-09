@@ -40,9 +40,19 @@ describe('Front-end Tests', () => {
 				})
 			})
 
-			// context ('Success States', () => {
-			// 	it('App advances to Input Page with a valid name', () => {})
-			// })
+			context ('Success States', () => {
+				it('App advances to Input Page with a valid name', () => {
+					const validName = 'Rupert the Wonder Pig';
+					cy.get('input[type="text"][placeholder="What\'s Your Name?"]')
+						.type(validName);
+					cy.get('button[type="submit"]')
+						.click();
+					cy.contains(validName)
+						.should('be.visible');
+					cy.get('input[type="date"]')
+						.should('exist');
+				});
+			})
 		})
 	})
 
