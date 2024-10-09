@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../sections/Content';
 import HeroTxt from '../text/HeroTxt';
 import Genre from '../inputs/Genre';
@@ -7,45 +7,51 @@ import Date from '../inputs/Date';
 import Button from '../buttons/Button';
 import LoadingPage from './LoadingPage';
 import Radio from '../inputs/Radio';
-import { fetchPlaylist } from '../utils/fetchPlaylist'
+import { fetchPlaylist } from '../utils/fetchPlaylist';
+import { TracklistProps } from '../utils/playlistTypes';
 
 interface InputProps {
-	onNext: () => void;
+	setPlaylistJson: (json: Promise<TracklistProps>) => void;
 }
 
-function InputPage({ onNext }: InputProps) {
-  const { userName } = useContext(UserContext);
-  const [ loading, setLoading ] = useState(false);
+function InputPage({ setPlaylistJson }: InputProps) {
+	const { userName } = useContext(UserContext);
+	const [loading, setLoading] = useState(false);
 
-	const [userResponse, setUserResponse] = React.useState({
+	const [userResponse, setUserResponse] = useState({
 		date: '',
 		eventDescription: '',
 		musicGenre: '',
 		playlistCount: NaN,
 	});
 
-	useEffect(() => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
 
-		fetchPlaylist(userResponse);
-	}, [userResponse, onNext]);
+		// Trigger loading page
+		setLoading(true);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+		// Update user response state based on form input
+		const updatedResponse = {
+			date: event.currentTarget.date.value,
+			eventDescription: event.currentTarget.eventDescription.value,
+			musicGenre: event.currentTarget.musicGenre.value,
+			playlistCount: userResponse.playlistCount,
+		};
 
-    // Trigger loading page
-    setLoading(true);
+		setUserResponse(updatedResponse);
 
-    setUserResponse({
-      date: event.currentTarget.date.value,
-      eventDescription: event.currentTarget.eventDescription.value,
-      musicGenre: event.currentTarget.musicGenre.value,
-      playlistCount: userResponse.playlistCount,
-    });
-  }
+		// Fetch the playlist as a promise and set it in the context
+		const playlistPromise = fetchPlaylist(updatedResponse);
+		setPlaylistJson(playlistPromise);
 
-  if (loading) {
-    return <LoadingPage />;
-  }
+		// Optionally, you can handle the resolved promise here if needed
+		playlistPromise.finally(() => setLoading(false));
+	};
+
+	if (loading) {
+		return <LoadingPage />;
+	}
 
 	return (
 		<div className='bg-[var(--pink)] min-h-screen flex flex-col'>
@@ -68,7 +74,12 @@ function InputPage({ onNext }: InputProps) {
 								}
 							/>
 						</div>
-						<Button onClick={() => handleSubmit} label='Create playlist' />
+						<Button
+							onClick={() => handleSubmit}
+							label="Generate playlist"
+							disabled={false}
+							loading={false}
+						/>
 					</form>
 				</div>
 			</main>
