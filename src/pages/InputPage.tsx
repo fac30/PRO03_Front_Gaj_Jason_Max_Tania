@@ -14,8 +14,11 @@ interface InputProps {
 }
 
 function InputPage({ onNext }: InputProps) {
-  const { userName } = useContext(UserContext);
-  const [ loading, setLoading ] = useState(false);
+	const { userName } = useContext(UserContext);
+	const [ loading, setLoading ] = useState(false);
+	const [ error, setError ] = useState<string | null>(null);
+	const warn = 'Please complete the form';
+	const scold = 'Don\'t be a tit';
 
 	const [userResponse, setUserResponse] = React.useState({
 		date: '',
@@ -29,23 +32,46 @@ function InputPage({ onNext }: InputProps) {
 		fetchPlaylist(userResponse);
 	}, [userResponse, onNext]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+	const validateForm = (formData: typeof userResponse): boolean => {
+		if (!formData.date) {
+			setError(warn);
+			return false;
+		} else if (!formData.musicGenre) {
+			setError(warn);
+			return false;
+		} else if (!formData.eventDescription.trim()) {
+			setError(warn);
+			return false;
+		} else if (formData.eventDescription.includes('<')) {
+			setError(scold);
+			return false;
+		} else {
+			setError(null);
+			return true;
+		}
+	};
 
-    // Trigger loading page
-    setLoading(true);
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
 
-    setUserResponse({
-      date: event.currentTarget.date.value,
+		const formData = {
+			date: event.currentTarget.date.value,
       eventDescription: event.currentTarget.eventDescription.value,
       musicGenre: event.currentTarget.musicGenre.value,
       playlistCount: userResponse.playlistCount,
-    });
-  }
+		};
 
-  if (loading) {
-    return <LoadingPage />;
-  }
+		if (validateForm(formData)) {
+			setLoading(true);
+			setUserResponse(formData);
+		} else {
+			// show error message
+		}
+	}
+
+	if (loading) {
+		return <LoadingPage />;
+	}
 
 	return (
 		<div className='bg-[var(--pink)] min-h-screen flex flex-col'>
@@ -68,6 +94,7 @@ function InputPage({ onNext }: InputProps) {
 								}
 							/>
 						</div>
+						{error && <p className="error">{error}</p>}
 						<Button onClick={() => handleSubmit} label='Create playlist' />
 					</form>
 				</div>
