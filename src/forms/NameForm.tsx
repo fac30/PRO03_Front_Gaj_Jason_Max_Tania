@@ -23,6 +23,11 @@ function NameForm({ onSubmit }: NameFormProps) {
 			return false;
 		}
 		
+		if (input.trim().includes('<')) {
+			setError('Please stop your hackings');
+			return false;
+		}
+		
 		setError(null);
 		return true;
 	};

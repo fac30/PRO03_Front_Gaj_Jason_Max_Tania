@@ -36,7 +36,7 @@ describe('Front-end Tests', () => {
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
 					cy.get('.error')
-						.should('contain', 'Please enter a valid name');
+						.should('contain', 'Please stop your hackings');
 				})
 			})
 
