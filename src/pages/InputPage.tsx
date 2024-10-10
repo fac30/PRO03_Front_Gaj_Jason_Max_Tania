@@ -16,7 +16,10 @@ interface InputProps {
 
 function InputPage({ setPlaylistJson }: InputProps) {
 	const { userName } = useContext(UserContext);
-	const [loading, setLoading] = useState(false);
+	const [ loading, setLoading ] = useState(false);
+	const [ error, setError ] = useState<string | null>(null);
+	const warn = 'Please complete the form';
+	const scold = 'Don\'t be a tit';
 
 	const [userResponse, setUserResponse] = useState({
 		date: '',
@@ -24,30 +27,48 @@ function InputPage({ setPlaylistJson }: InputProps) {
 		musicGenre: '',
 		playlistCount: NaN,
 	});
-
+  
+  const validateForm = (formData: typeof userResponse): boolean => {
+		if (!formData.date) {
+			setError(warn);
+			return false;
+		} else if (!formData.musicGenre) {
+			setError(warn);
+			return false;
+		} else if (!formData.eventDescription.trim()) {
+			setError(warn);
+			return false;
+		} else if (formData.eventDescription.includes('<')) {
+			setError(scold);
+			return false;
+		} else {
+			setError(null);
+			return true;
+		}
+	};
+  
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		// Trigger loading page
 		setLoading(true);
-
-		// Update user response state based on form input
 		const updatedResponse = {
 			date: event.currentTarget.date.value,
 			eventDescription: event.currentTarget.eventDescription.value,
 			musicGenre: event.currentTarget.musicGenre.value,
 			playlistCount: userResponse.playlistCount,
 		};
-
-		setUserResponse(updatedResponse);
-
-		// Fetch the playlist as a promise and set it in the context
-		const playlistPromise = fetchPlaylist(updatedResponse);
-		setPlaylistJson(playlistPromise);
-
-		// Optionally, you can handle the resolved promise here if needed
-		playlistPromise.finally(() => setLoading(false));
+    
+    if (validateForm(updatedResponse)) {
+			setLoading(true);
+			setUserResponse(updatedResponse);
+      const playlistPromise = fetchPlaylist(updatedResponse);
+		  setPlaylistJson(playlistPromise);
+		  playlistPromise.finally(() => setLoading(false));
+		} else {
+			throw new Error('invalid input');
+		}
 	};
+
 
 	if (loading) {
 		return <LoadingPage />;
@@ -74,12 +95,14 @@ function InputPage({ setPlaylistJson }: InputProps) {
 								}
 							/>
 						</div>
+
 						<Button
 							onClick={() => handleSubmit}
 							label="Generate playlist"
 							disabled={false}
 							loading={false}
 						/>
+
 					</form>
 				</div>
 			</main>

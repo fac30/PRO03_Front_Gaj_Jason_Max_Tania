@@ -11,20 +11,20 @@ function NameForm({ onSubmit }: NameFormProps) {
 	const [name, setName] = useState('');
 	const [error, setError] = useState<string | null>(null);
 	const filter = new Filter();
+	const warn = 'Please complete the form';
+	const scold = 'Don\'t be a tit'
 
 	const validateName = (input: string): boolean => {
 		if (input.trim() === '') {
-			setError('Please enter your name');
+			setError(warn);
 			return false;
-		}
-		
-		if (filter.isProfane(input)) {
-			setError('Please enter a respectful name');
+		} else if (filter.isProfane(input) || input.trim().includes('<')) {
+			setError(scold);
 			return false;
+		} else {
+			setError(null);
+			return true;
 		}
-		
-		setError(null);
-		return true;
 	};
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
