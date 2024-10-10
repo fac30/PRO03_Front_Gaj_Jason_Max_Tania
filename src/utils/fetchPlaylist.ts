@@ -1,7 +1,7 @@
-import { UserInputs } from './playlistTypes'
+import { UserInputs, TracklistProps } from './playlistTypes';
 
-export async function fetchPlaylist(userResponse: UserInputs) {
-    if ( userResponse ) {
+export async function fetchPlaylist(userResponse: UserInputs): Promise<TracklistProps> {
+    if (userResponse) {
         try {
             const response = await fetch(
                 `http://3.10.22.166:3000/api/run/?musicGenre=${encodeURIComponent(
@@ -27,8 +27,16 @@ export async function fetchPlaylist(userResponse: UserInputs) {
 
             const data = await response.json();
             console.log(data);
+
+            if (Array.isArray(data)) {
+                return data;
+            } else {
+                throw new Error('Unexpected response format: data is not an array');
+            }
         } catch (error) {
             console.error('Error calling Mood Time API:', error);
+            return [];
         }
     }
-};
+    return [];
+}
