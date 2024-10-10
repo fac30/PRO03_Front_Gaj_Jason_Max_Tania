@@ -1,3 +1,9 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #root {
   width: 100%;
   height: 100%;
@@ -6,24 +12,13 @@
   text-align: center;
 }
 
-:root {
-  --lightgreen: #90ee90; /* Your desired light green color */
-}
-
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -32,10 +27,12 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.spin-animation {
+  transition: transform 0.5s ease-in-out;
+}
+
+.spin-animation:hover {
+  animation: spin 0.5s linear infinite;
 }
 
 .card {
@@ -46,13 +43,14 @@
   color: #888;
 }
 
-.min-h-screen {
-  min-height: 100vh; /* Full screen height */
+@media (max-width: 900px) {
+  iframe.track {
+    width: 200px; /* Change the width when screen is less than 900px */
+  }
 }
 
-.flex-grow {
-  flex-grow: 1; /* Makes the content grow to fill available space */
-  display: flex;
-  align-items: center; /* Vertically center the content */
-  justify-content: center; /* Horizontally center the content */
+@media (min-width: 900px) {
+  iframe.track {
+    width: 400px; /* Change the width when screen is larger than 900px */
+  }
 }
