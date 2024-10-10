@@ -9,7 +9,7 @@ const user = {
 
 const app = {
 	button: {
-		submit: 'button[type="submit"]'
+		landing: 'button[type="submit"]'
 	},
 	error: {
 		warn: 'Please complete the form',
@@ -20,69 +20,61 @@ const app = {
 		feel: 'textarea[name="eventDescription"]',
 		genre: 'select[id="musicGenre"]',
 		name: 'input[type="text"][placeholder="What\'s Your Name?"]'
-	}, 
-	url: {
-		local: 'http://localhost:5173'
 	}
 };
 
 describe('Front-end Tests', () => {
-  beforeEach(() => { cy.visit(app.url.local) })
+  beforeEach(() => { cy.visit('') })
 
-	context ('Landing Page', () => {
-		context ('Guestlist', () => {
-			context ('Not on the List', () => {
-				it('Ghosty', () => {
-					cy.get(app.input.name);
-					cy.get(app.button.submit)
-						.click();
-					cy.get('.error')
-						.should('contain', app.error.warn);
-				})
-				it('Rudey', () => {
-					cy.get(app.input.name)
-						.type(user.rude);
-					cy.get(app.button.submit)
-						.click();
-					cy.url()
-						.should('eq', 'http://localhost:5173/');
-					cy.get('.error')
-						.should('contain', app.error.scold);
-				})
-				it('Hacky', () => {
-					cy.get(app.input.name)
-						.type(user.hacky);
-					cy.get(app.button.submit)
-						.click();
-					cy.url()
-						.should('eq', 'http://localhost:5173/');
-					cy.get('.error')
-						.should('contain', app.error.scold);
-				})
+	context('The Bouncer', () => {
+		context('Keeps Out the Riff-Raff', () => {
+			it('Ghosty', () => {
+				cy.get(app.input.name);
+				cy.get(app.button.landing)
+					.click();
+				cy.get('#error')
+					.should('contain', app.error.warn);
 			})
+			it('Rudey', () => {
+				cy.get(app.input.name)
+					.type(user.rude);
+				cy.get(app.button.landing)
+					.click();
+				cy.url()
+					.should('eq', 'http://localhost:5173/');
+				cy.get('#error')
+					.should('contain', app.error.scold);
+			})
+			it('Hacky', () => {
+				cy.get(app.input.name)
+					.type(user.hacky);
+				cy.get(app.button.landing)
+					.click();
+				cy.url()
+					.should('eq', 'http://localhost:5173/');
+				cy.get('#error')
+					.should('contain', app.error.scold);
+			})
+		})
 
-			context ('On the List', () => {
-				it('Pig', () => {
-					cy.get(app.input.name)
-						.type(user.valid);
-					cy.get(app.button.submit)
-						.click();
-					cy.contains(user.valid)
-						.should('be.visible');
-					cy.get('input[type="date"]')
-						.should('exist');
-				});
-			})
+		context ('Ushers In VIPs', () => {
+			it('Pig', () => {
+				cy.get(app.input.name)
+					.type(user.valid);
+				cy.get(app.button.landing)
+					.click();
+				cy.contains(user.valid)
+					.should('be.visible');
+				cy.get('input[type="date"]')
+					.should('exist');
+			});
 		})
 	})
 
 	context ('Input Page', () => {
 		beforeEach(() => {
 			cy.get( app.input.name ).type( user.valid );
-			cy.get( app.button.submit ).click();
-			cy.get( app.input.date ).should('exist');
-			cy.get( app.input.feel ).should('exist');
-			cy.get( app.input.genre ).should('exist');
+			cy.get( app.button.landing ).click();
 		});
 
 		context('Form Submission', () => {
@@ -92,7 +84,7 @@ describe('Front-end Tests', () => {
 						.select('rock');
 					cy.get( app.input.feel )
 						.type('Happy');
-					cy.get( app.button.submit )
+					cy.contains('button', 'Generate playlist')
 						.click();
 					cy.get('.error')
 						.should('contain', app.error.warn);
@@ -105,7 +97,7 @@ describe('Front-end Tests', () => {
 					.type('2023-05-01');
 					cy.get(app.input.feel)
 						.type('Happy');
-					cy.get(app.button.submit)
+					cy.get(app.button.input)
 						.click();
 					cy.get('.error')
 						.should('contain', app.error.warn);
@@ -118,7 +110,7 @@ describe('Front-end Tests', () => {
 						.type('2023-05-01');
 					cy.get( app.input.genre )
 						.select('rock');
-					cy.get( app.button.submit )
+					cy.contains('button', 'Generate playlist')
 						.click();
 					cy.get('.error')
 						.should('contain', app.error.warn);
@@ -137,7 +129,7 @@ describe('Front-end Tests', () => {
 						.type('Happy');
 					cy.intercept('GET', '/api/playlist')
 						.as('playlistRequest');
-					cy.get( app.button.submit )
+					cy.contains('button', 'Generate playlist')
 						.click();
 					
 					cy.wait('@playlistRequest')
