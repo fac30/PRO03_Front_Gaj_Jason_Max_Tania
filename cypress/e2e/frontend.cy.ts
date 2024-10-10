@@ -9,7 +9,7 @@ const user = {
 
 const app = {
 	button: {
-		submit: 'button[type="submit"]'
+		landing: 'button[type="submit"]'
 	},
 	error: {
 		warn: 'Please complete the form',
@@ -26,11 +26,11 @@ const app = {
 describe('Front-end Tests', () => {
   beforeEach(() => { cy.visit('') })
 
-	context('Landing Page', () => {
-		context('Not on the Guestlist', () => {
+	context('The Bouncer', () => {
+		context('Keeps Out the Riff-Raff', () => {
 			it('Ghosty', () => {
 				cy.get(app.input.name);
-				cy.get(app.button.submit)
+				cy.get(app.button.landing)
 					.click();
 				cy.get('#error')
 					.should('contain', app.error.warn);
@@ -38,7 +38,7 @@ describe('Front-end Tests', () => {
 			it('Rudey', () => {
 				cy.get(app.input.name)
 					.type(user.rude);
-				cy.get(app.button.submit)
+				cy.get(app.button.landing)
 					.click();
 				cy.url()
 					.should('eq', 'http://localhost:5173/');
@@ -48,7 +48,7 @@ describe('Front-end Tests', () => {
 			it('Hacky', () => {
 				cy.get(app.input.name)
 					.type(user.hacky);
-				cy.get(app.button.submit)
+				cy.get(app.button.landing)
 					.click();
 				cy.url()
 					.should('eq', 'http://localhost:5173/');
@@ -57,11 +57,11 @@ describe('Front-end Tests', () => {
 			})
 		})
 
-		context ('Guestlist VIP', () => {
+		context ('Ushers In VIPs', () => {
 			it('Pig', () => {
 				cy.get(app.input.name)
 					.type(user.valid);
-				cy.get(app.button.submit)
+				cy.get(app.button.landing)
 					.click();
 				cy.contains(user.valid)
 					.should('be.visible');
@@ -74,7 +74,7 @@ describe('Front-end Tests', () => {
 	context ('Input Page', () => {
 		beforeEach(() => {
 			cy.get( app.input.name ).type( user.valid );
-			cy.get( app.button.submit ).click();
+			cy.get( app.button.landing ).click();
 		});
 
 		context('Form Submission', () => {
@@ -84,7 +84,7 @@ describe('Front-end Tests', () => {
 						.select('rock');
 					cy.get( app.input.feel )
 						.type('Happy');
-					cy.get( app.button.submit )
+					cy.contains('button', 'Generate playlist')
 						.click();
 					cy.get('.error')
 						.should('contain', app.error.warn);
@@ -97,7 +97,7 @@ describe('Front-end Tests', () => {
 					.type('2023-05-01');
 					cy.get(app.input.feel)
 						.type('Happy');
-					cy.get(app.button.submit)
+					cy.get(app.button.input)
 						.click();
 					cy.get('.error')
 						.should('contain', app.error.warn);
@@ -110,7 +110,7 @@ describe('Front-end Tests', () => {
 						.type('2023-05-01');
 					cy.get( app.input.genre )
 						.select('rock');
-					cy.get( app.button.submit )
+					cy.contains('button', 'Generate playlist')
 						.click();
 					cy.get('.error')
 						.should('contain', app.error.warn);
@@ -129,7 +129,7 @@ describe('Front-end Tests', () => {
 						.type('Happy');
 					cy.intercept('GET', '/api/playlist')
 						.as('playlistRequest');
-					cy.get( app.button.submit )
+					cy.contains('button', 'Generate playlist')
 						.click();
 					
 					cy.wait('@playlistRequest')
