@@ -24,15 +24,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
-        continue-on-error: true
+      - name: Lint
+        run: npm run lint
 
       - name: Build Vite App
         run: npm run build
+        env:
+          CI: true
+
+      - name: Run tests
+        run: npm test
+        env:
+          CI: true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: success()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./distgit 
