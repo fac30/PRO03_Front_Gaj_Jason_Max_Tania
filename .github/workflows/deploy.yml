@@ -1,45 +1,31 @@
-name: Deploy Mood Time GitHub Pages
+name: Deploy Jekyll site
 
 on:
   push:
     branches:
-      - deploy
-  pull_request:
-    branches:
-      - deploy
+      - deploy  # Trigger deployment when pushing to the deploy branch
 
 jobs:
-  build-and-deploy:
+  jekyll-build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          node-version: '20'
+          ruby-version: '3.1'  # Adjust this to your Ruby version if needed
+          bundler-cache: true
 
       - name: Install dependencies
-        run: npm ci
+        run: bundle install
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Build Vite App
-        run: npm run build
-        env:
-          CI: true
-
-      - name: Run tests
-        run: npm test
-        env:
-          CI: true
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: success()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./distgit 
+          publish_dir: ./_site  # Jekyll's default output directory
