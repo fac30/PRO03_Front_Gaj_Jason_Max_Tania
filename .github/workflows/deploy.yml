@@ -1,12 +1,12 @@
-name: Deploy Jekyll site
+name: Jekyll CI/CD
 
 on:
   push:
     branches:
-      - deploy  # Trigger deployment when pushing to the deploy branch
+      - main  # Adjust this if your main branch has a different name
 
 jobs:
-  jekyll-build-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -15,27 +15,18 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'  # Adjust this to your Ruby version if needed
+          ruby-version: '3.1'  # Adjust this if you're using a different Ruby version
 
-      - name: List directory contents
-        run: ls -la
-
-      - name: Find Jekyll files
+      - name: Install dependencies
         run: |
-          find . -name "_config.yml"
-          find . -name "Gemfile"
-
-      - name: Display Jekyll version
-        run: jekyll -v
-
-      - name: Install Jekyll
-        run: gem install jekyll bundler
+          gem install bundler
+          bundle install
 
       - name: Build Jekyll site
-        run: jekyll build
+        run: bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site  # Jekyll's default output directory
+          publish_dir: ./_site
