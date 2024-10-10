@@ -16,13 +16,23 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'  # Adjust this to your Ruby version if needed
-          bundler-cache: true
 
-      - name: Install dependencies
-        run: bundle install
+      - name: List directory contents
+        run: ls -la
+
+      - name: Find Jekyll files
+        run: |
+          find . -name "_config.yml"
+          find . -name "Gemfile"
+
+      - name: Display Jekyll version
+        run: jekyll -v
+
+      - name: Install Jekyll
+        run: gem install jekyll bundler
 
       - name: Build Jekyll site
-        run: bundle exec jekyll build
+        run: jekyll build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
