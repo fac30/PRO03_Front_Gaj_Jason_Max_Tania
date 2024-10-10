@@ -36,7 +36,7 @@ describe('Front-end Tests', () => {
 					cy.get(app.input.name);
 					cy.get(app.button.submit)
 						.click();
-					cy.get('.error')
+					cy.get('#error')
 						.should('contain', app.error.warn);
 				})
 				it('Rudey', () => {
@@ -46,7 +46,7 @@ describe('Front-end Tests', () => {
 						.click();
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
-					cy.get('.error')
+					cy.get('#error')
 						.should('contain', app.error.scold);
 				})
 				it('Hacky', () => {
@@ -56,7 +56,7 @@ describe('Front-end Tests', () => {
 						.click();
 					cy.url()
 						.should('eq', 'http://localhost:5173/');
-					cy.get('.error')
+					cy.get('#error')
 						.should('contain', app.error.scold);
 				})
 			})
