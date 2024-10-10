@@ -1,11 +1,17 @@
 import React from 'react';
 
 interface DevToolsProps {
-  setCurrentPage: (page: string) => void;
+  setCurrentPage: (page: 'dummy' | 'landing' | 'input' | 'loading' | 'playlist') => void;
 }
 
 const DevTools: React.FC<DevToolsProps> = ({ setCurrentPage }) => {
-  const pages = ['dummy', 'landing', 'input', 'loading', 'playlist'];
+  const pages: ('dummy' | 'landing' | 'input' | 'loading' | 'playlist')[] = [
+    'dummy',
+    'landing',
+    'input',
+    'loading',
+    'playlist',
+  ];
 
   return (
     <div style={{ position: 'fixed', bottom: 0, left: 0, padding: '10px', background: '#f0f0f0' }}>
@@ -15,7 +21,7 @@ const DevTools: React.FC<DevToolsProps> = ({ setCurrentPage }) => {
           onClick={() => setCurrentPage(page)}
           style={{ marginRight: '5px' }}
         >
-					{page}
+          {page}
         </button>
       ))}
     </div>
