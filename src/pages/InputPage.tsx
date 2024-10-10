@@ -50,10 +50,7 @@ function InputPage({ setPlaylistJson }: InputProps) {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		// Trigger loading page
 		setLoading(true);
-
-		// Update user response state based on form input
 		const updatedResponse = {
 			date: event.currentTarget.date.value,
 			eventDescription: event.currentTarget.eventDescription.value,
