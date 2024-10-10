@@ -43,7 +43,7 @@ function NameForm({ onSubmit }: NameFormProps) {
 				/>
 			</div>
 			
-			{error && <p className="text-red-500 text-sm">{error}</p>}
+			{error && <p id="error" className="text-red-500 text-sm">{error}</p>}
 
 			<Button
 				onClick={() => {}}
