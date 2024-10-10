@@ -3,16 +3,16 @@ import { UserInputs, TracklistProps } from './playlistTypes';
 export async function fetchPlaylist(userResponse: UserInputs): Promise<TracklistProps> {
     if (userResponse) {
         try {
-            const response = await fetch(
-                `http://3.10.22.166:3000/api/run/?musicGenre=${encodeURIComponent(
-                    userResponse.musicGenre
-                )}&eventDescription=${encodeURIComponent(
-                    userResponse.eventDescription
-                )}&date=${encodeURIComponent(
+            const moodTimeUrl = `http://35.178.184.58:3000/api/run/?date=${
                     userResponse.date
-                )}T00:00:00.000Z&playlistCount=${encodeURIComponent(
+                }T00:00:00.000Z&eventDescription=${
+                    userResponse.eventDescription
+                }&musicGenre=${
+                    userResponse.musicGenre
+                }&playlistCount=${
                     userResponse.playlistCount
-                )}`,
+                }`;
+            const response = await fetch(moodTimeUrl,
                 {
                     method: 'GET',
                     headers: {
