@@ -35,11 +35,18 @@ function NameForm({ onSubmit }: NameFormProps) {
 	};
 	
 	return (
-		<form onSubmit={handleSubmit}>
-			<NameInput value={name} onChange={setName} />
-			{error && <p className="error">{error}</p>}
+		<form onSubmit={handleSubmit} className="flex flex-col items-center max-lg:space-y-2 space-y-4 w-full max-w-md">
+			<div className="w-full">
+				<NameInput 
+					value={name} 
+					onChange={setName} 
+				/>
+			</div>
+			
+			{error && <p className="text-red-500 text-sm">{error}</p>}
+
 			<Button
-				onClick={() => {}} // Add an empty onClick handler
+				onClick={() => {}}
 				label="Let's Make a Playlist"
 			/>
 		</form>
