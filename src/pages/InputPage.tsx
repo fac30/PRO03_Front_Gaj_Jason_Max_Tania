@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../sections/Content';
 import HeroTxt from '../text/HeroTxt';
 import Genre from '../inputs/Genre';
@@ -7,32 +7,28 @@ import Date from '../inputs/Date';
 import Button from '../buttons/Button';
 import LoadingPage from './LoadingPage';
 import Radio from '../inputs/Radio';
-import { fetchPlaylist } from '../utils/fetchPlaylist'
+import { fetchPlaylist } from '../utils/fetchPlaylist';
+import { TracklistProps } from '../utils/playlistTypes';
 
 interface InputProps {
-	onNext: () => void;
+	setPlaylistJson: (json: Promise<TracklistProps>) => void;
 }
 
-function InputPage({ onNext }: InputProps) {
+function InputPage({ setPlaylistJson }: InputProps) {
 	const { userName } = useContext(UserContext);
 	const [ loading, setLoading ] = useState(false);
 	const [ error, setError ] = useState<string | null>(null);
 	const warn = 'Please complete the form';
 	const scold = 'Don\'t be a tit';
 
-	const [userResponse, setUserResponse] = React.useState({
+	const [userResponse, setUserResponse] = useState({
 		date: '',
 		eventDescription: '',
 		musicGenre: '',
 		playlistCount: NaN,
 	});
-
-	useEffect(() => {
-
-		fetchPlaylist(userResponse);
-	}, [userResponse, onNext]);
-
-	const validateForm = (formData: typeof userResponse): boolean => {
+  
+  const validateForm = (formData: typeof userResponse): boolean => {
 		if (!formData.date) {
 			setError(warn);
 			return false;
@@ -50,24 +46,29 @@ function InputPage({ onNext }: InputProps) {
 			return true;
 		}
 	};
-
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const formData = {
+		setLoading(true);
+		const updatedResponse = {
 			date: event.currentTarget.date.value,
-      eventDescription: event.currentTarget.eventDescription.value,
-      musicGenre: event.currentTarget.musicGenre.value,
-      playlistCount: userResponse.playlistCount,
+			eventDescription: event.currentTarget.eventDescription.value,
+			musicGenre: event.currentTarget.musicGenre.value,
+			playlistCount: userResponse.playlistCount,
 		};
-
-		if (validateForm(formData)) {
+    
+    if (validateForm(updatedResponse)) {
 			setLoading(true);
-			setUserResponse(formData);
+			setUserResponse(updatedResponse);
+      const playlistPromise = fetchPlaylist(updatedResponse);
+		  setPlaylistJson(playlistPromise);
+		  playlistPromise.finally(() => setLoading(false));
 		} else {
-			// show error message
+			throw new Error('invalid input');
 		}
-	}
+	};
+
 
 	if (loading) {
 		return <LoadingPage />;
@@ -94,8 +95,15 @@ function InputPage({ onNext }: InputProps) {
 								}
 							/>
 						</div>
-						{error && <p className="error">{error}</p>}
-						<Button onClick={() => handleSubmit} label='Create playlist' />
+                        {error && <p className="error">{error}</p>}
+
+						<Button
+							onClick={() => handleSubmit}
+							label="Generate playlist"
+							disabled={false}
+							loading={false}
+						/>
+
 					</form>
 				</div>
 			</main>
