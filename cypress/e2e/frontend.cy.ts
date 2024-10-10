@@ -29,9 +29,9 @@ const app = {
 describe('Front-end Tests', () => {
   beforeEach(() => { cy.visit(app.url.local) })
 
-	context ('Landing Page', () => {
-		context ('Guestlist', () => {
-			context ('Not on the List', () => {
+	context('Landing Page', () => {
+		context('Guestlist', () => {
+			context('Not on the List', () => {
 				it('Ghosty', () => {
 					cy.get(app.input.name);
 					cy.get(app.button.submit)
