@@ -95,6 +95,7 @@ function InputPage({ setPlaylistJson }: InputProps) {
 								}
 							/>
 						</div>
+                        {error && <p className="error">{error}</p>}
 
 						<Button
 							onClick={() => handleSubmit}
