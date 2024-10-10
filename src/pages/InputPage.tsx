@@ -74,7 +74,7 @@ function InputPage({ onNext }: InputProps) {
 	}
 
 	return (
-		<div className="bg-gradient-to-r from-[var(--yellow)] to-[var(--pink)] flex-grow flex flex-col p-4 md:p-6 items-center justify-center">
+		<div className="bg-[var(--pink)] flex-grow flex flex-col p-4 md:p-6 items-center justify-center">
                 <div className="w-full max-w-md space-y-6">
 					<HeroTxt
 						userName={userName}
