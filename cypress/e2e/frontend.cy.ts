@@ -20,59 +20,54 @@ const app = {
 		feel: 'textarea[name="eventDescription"]',
 		genre: 'select[id="musicGenre"]',
 		name: 'input[type="text"][placeholder="What\'s Your Name?"]'
-	}, 
-	url: {
-		local: 'http://localhost:5173'
 	}
 };
 
 describe('Front-end Tests', () => {
-  beforeEach(() => { cy.visit(app.url.local) })
+  beforeEach(() => { cy.visit('') })
 
 	context('Landing Page', () => {
-		context('Guestlist', () => {
-			context('Not on the List', () => {
-				it('Ghosty', () => {
-					cy.get(app.input.name);
-					cy.get(app.button.submit)
-						.click();
-					cy.get('#error')
-						.should('contain', app.error.warn);
-				})
-				it('Rudey', () => {
-					cy.get(app.input.name)
-						.type(user.rude);
-					cy.get(app.button.submit)
-						.click();
-					cy.url()
-						.should('eq', 'http://localhost:5173/');
-					cy.get('#error')
-						.should('contain', app.error.scold);
-				})
-				it('Hacky', () => {
-					cy.get(app.input.name)
-						.type(user.hacky);
-					cy.get(app.button.submit)
-						.click();
-					cy.url()
-						.should('eq', 'http://localhost:5173/');
-					cy.get('#error')
-						.should('contain', app.error.scold);
-				})
+		context('Not on the Guestlist', () => {
+			it('Ghosty', () => {
+				cy.get(app.input.name);
+				cy.get(app.button.submit)
+					.click();
+				cy.get('#error')
+					.should('contain', app.error.warn);
 			})
+			it('Rudey', () => {
+				cy.get(app.input.name)
+					.type(user.rude);
+				cy.get(app.button.submit)
+					.click();
+				cy.url()
+					.should('eq', 'http://localhost:5173/');
+				cy.get('#error')
+					.should('contain', app.error.scold);
+			})
+			it('Hacky', () => {
+				cy.get(app.input.name)
+					.type(user.hacky);
+				cy.get(app.button.submit)
+					.click();
+				cy.url()
+					.should('eq', 'http://localhost:5173/');
+				cy.get('#error')
+					.should('contain', app.error.scold);
+			})
+		})
 
-			context ('On the List', () => {
-				it('Pig', () => {
-					cy.get(app.input.name)
-						.type(user.valid);
-					cy.get(app.button.submit)
-						.click();
-					cy.contains(user.valid)
-						.should('be.visible');
-					cy.get('input[type="date"]')
-						.should('exist');
-				});
-			})
+		context ('Guestlist VIP', () => {
+			it('Pig', () => {
+				cy.get(app.input.name)
+					.type(user.valid);
+				cy.get(app.button.submit)
+					.click();
+				cy.contains(user.valid)
+					.should('be.visible');
+				cy.get('input[type="date"]')
+					.should('exist');
+			});
 		})
 	})
 
@@ -80,9 +75,6 @@ describe('Front-end Tests', () => {
 		beforeEach(() => {
 			cy.get( app.input.name ).type( user.valid );
 			cy.get( app.button.submit ).click();
-			cy.get( app.input.date ).should('exist');
-			cy.get( app.input.feel ).should('exist');
-			cy.get( app.input.genre ).should('exist');
 		});
 
 		context('Form Submission', () => {
