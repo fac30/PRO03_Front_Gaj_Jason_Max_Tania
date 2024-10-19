@@ -1,0 +1,46 @@
+name: Deploy Mood Time GitHub Pages
+
+on:
+  push:
+    branches:
+      - deploy  # Trigger the workflow when changes are pushed to the deploy branch
+  pull_request:
+    branches:
+      - deploy  # Optionally trigger on pull requests to the deploy branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Specify your Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test  # Run your tests; adjust if using a different command
+
+      - name: Build Vite App
+        run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  # Ensure that deployment happens after a successful build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # Directory where Vite outputs the built files
+
