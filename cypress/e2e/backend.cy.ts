@@ -1,3 +1,4 @@
+// @ts-nocheck
 describe('Back-end API Tests', () => {
   it('should fetch mood data', () => {
     cy.request('GET', 'http://localhost:5000/')
