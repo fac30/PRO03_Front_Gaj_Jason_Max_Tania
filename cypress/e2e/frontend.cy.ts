@@ -1,5 +1,4 @@
-/// <reference types="cypress" />
-
+// @ts-nocheck
 const user = {
 	ghosty: "",
 	rude: "Fuck Nugget",

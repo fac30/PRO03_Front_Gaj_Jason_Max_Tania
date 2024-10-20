@@ -1,0 +1,1 @@
+{"root":["./e2e/backend.cy.ts","./e2e/frontend.cy.ts","./e2e/userjourney.cy.ts","./support/commands.ts","./support/e2e.ts","../cypress.d.ts"],"version":"5.6.3"}

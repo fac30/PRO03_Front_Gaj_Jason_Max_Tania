@@ -1,1 +1,1 @@
-{"root":["./vite.config.ts"],"version":"5.6.2"}
+{"root":["./vite.config.ts","./src/vite-env.d.ts","./src/utils/fetchplaylist.ts","./src/utils/playlisttypes.ts","./cypress/e2e/backend.cy.ts","./cypress/e2e/frontend.cy.ts","./cypress/e2e/userjourney.cy.ts","./cypress/support/commands.ts","./cypress/support/e2e.ts"],"version":"5.6.3"}
