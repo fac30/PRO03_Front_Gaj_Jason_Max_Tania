@@ -3,7 +3,8 @@ import { UserInputs, TracklistProps } from './playlistTypes';
 export async function fetchPlaylist(userResponse: UserInputs): Promise<TracklistProps> {
     if (userResponse) {
         try {
-            const moodTimeUrl = `http://35.176.251.92:3000/api/run/?date=${
+            // change back to the ip address!!!!
+            const moodTimeUrl = `http://localhost:3000/api/run/?date=${
                     encodeURIComponent(userResponse.date)
                 }T00:00:00.000Z&eventDescription=${
                     encodeURIComponent(userResponse.eventDescription)

@@ -1,10 +1,21 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import logo from '../assets/logo_background.png';
 
 
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    // Close menu on 'Esc' key press
+    useEffect(() => {
+      const handleEsc = (event: KeyboardEvent) => {
+          if (event.key === "Escape") {
+              setMenuOpen(false);
+          }
+      };
+      document.addEventListener("keydown", handleEsc);
+      return () => document.removeEventListener("keydown", handleEsc);
+    }, []);
 
     return (
       <header className="bg-[#929cf8] text-[#383050] p-4 w-full"> 
@@ -14,10 +25,10 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-3 cursor-pointer">
             <img
               src={logo}
-              alt="Brand Logo"
+              alt="Moodtime Logo"
               className="h-16 w-16 rounded-full spin-animation"
             />
-            <span className="text-xl font-bold">MoodTime</span>
+            <h1 className="text-xl font-bold">MoodTime</h1>
           </div>
 
           {/* Right side: Menu with three dots */}
