@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import LandingPage from '../pages/LandingPage';
 import InputPage from '../pages/InputPage';
 import PlaylistPage from '../pages/PlaylistPage';
@@ -20,8 +20,18 @@ export const UserContext = createContext<UserContextType>({
 	setPlaylistJson: () => {},
 });
 
-function Content() {
-	const [currentPage, setCurrentPage] = useState<'dummy' | 'landing' | 'input' | 'loading' | 'playlist'>('landing');
+interface ContentProps {
+    setCurrentPage: React.Dispatch<
+        React.SetStateAction<
+            React.Dispatch<
+                React.SetStateAction<'dummy' | 'landing' | 'input' | 'loading' | 'playlist'>
+            >
+        >
+    >;
+}
+
+function Content({ setCurrentPage }: ContentProps) {
+	const [currentPage, setCurrentPageLocal] = useState<'dummy' | 'landing' | 'input' | 'loading' | 'playlist'>('landing');
 	const [userName, setUserName] = useState("");
 	const [playlistJson, setPlaylistJson] = useState<Promise<TracklistProps>>(new Promise((resolve) => resolve([])));
 
@@ -34,33 +44,36 @@ function Content() {
 
 	// Function to handle playlist creation and loading state
 	const handleCreatePlaylist = (playlistPromise: Promise<TracklistProps>) => {
-
 		setPlaylistJson(playlistPromise);
-
-		setCurrentPage('loading');
+		setCurrentPageLocal('loading');
 
 		playlistPromise
-			.then(() => setCurrentPage('playlist'))
+			.then(() => setCurrentPageLocal('playlist'))
 			.catch((error) => {
 				console.error('Error loading playlist:', error);
-				setCurrentPage('input');
+				setCurrentPageLocal('input');
 			});
 	};
+
+	 // Pass down the `setCurrentPageLocal` to the parent
+	useEffect(() => {
+        setCurrentPage(() => setCurrentPageLocal);
+    }, [setCurrentPage]);
 
 	const renderPage = () => {
 		switch (currentPage) {
 			case 'landing':
-				return <LandingPage onNext={() => setCurrentPage('input')} setUserName={setUserName} />;
+				return <LandingPage onNext={() => setCurrentPageLocal('input')} setUserName={setUserName} />;
 			case 'input':
 				return <InputPage setPlaylistJson={handleCreatePlaylist} />;
 			case 'loading':
 				return <LoadingPage />;
 			case 'playlist':
-				return <PlaylistPage onNext={() => setCurrentPage('input')} />;
+				return <PlaylistPage onNext={() => setCurrentPageLocal('input')} />;
 			case 'dummy':
-				return <DummyPage onNext={() => setCurrentPage('landing')} />;
+				return <DummyPage onNext={() => setCurrentPageLocal('landing')} />;
 			default:
-				return <DummyPage onNext={() => setCurrentPage('landing')} />;
+				return <DummyPage onNext={() => setCurrentPageLocal('landing')} />;
 		}
 	};
 
