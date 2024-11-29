@@ -61,15 +61,13 @@ function InputPage({ setPlaylistJson }: InputProps) {
     if (validateForm(updatedResponse)) {
 			setLoading(true);
 			setUserResponse(updatedResponse);
-      const playlistPromise = fetchPlaylist(updatedResponse);
-		  setPlaylistJson(playlistPromise);
-		  playlistPromise.finally(() => setLoading(false));
-		} else {
-			throw new Error('invalid input');
-		}
+            const playlistPromise = fetchPlaylist(updatedResponse);
+		    setPlaylistJson(playlistPromise);
+		    playlistPromise.finally(() => setLoading(false));
+		    } else {
+			   throw new Error('invalid input');
+		    }
 	};
-
-
 	if (loading) {
 		return <LoadingPage />;
 	}
